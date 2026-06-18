@@ -97,6 +97,11 @@ def localize(cwd):
 
 
 def main():
+    try:                                  # self-migrate old hooks + register merge driver
+        import ensure_hooks
+        ensure_hooks.run()
+    except Exception:
+        pass
     titles = load_titles()
     tmpl, parent = find_template()
     if tmpl is None:
