@@ -1,0 +1,4 @@
+# Session transcripts are append-only JSONL logs. On a merge conflict, union both sides
+# (dedup by entry uuid) instead of writing conflict markers. Driver is registered per
+# machine by tools/session_sync.sh start (config lives in .git/config, which is not synced).
+*.jsonl merge=jsonl-union
