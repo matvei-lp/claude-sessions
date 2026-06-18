@@ -10,3 +10,6 @@
 
 # Python cache
 tools/__pycache__/
+
+# Per-machine sync log (must not sync — would conflict on its own)
+tools/sync.log
