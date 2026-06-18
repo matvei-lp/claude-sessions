@@ -29,3 +29,6 @@
 {"type":"ai-title","aiTitle":"Understand device scanning function logic","sessionId":"a6215578-74a6-49d9-b92d-9586fb9223e4"}
 {"type":"last-prompt","lastPrompt":"private suspend fun scan() {         _state.value = DeviceSelectState(viewType = DeviceSelectViewType.Default, isSearching = true)         scheduleNotFoundCheck()         try {             scanner.sca…","leafUuid":"e6b0b9f5-4472-4203-a30d-9d542ebdb31e","sessionId":"a6215578-74a6-49d9-b92d-9586fb9223e4"}
 {"type":"ai-title","aiTitle":"Understand device scanning function logic","sessionId":"a6215578-74a6-49d9-b92d-9586fb9223e4"}
+{"type":"ai-title","aiTitle":"Understand device scanning function logic","sessionId":"a6215578-74a6-49d9-b92d-9586fb9223e4"}
+{"type":"ai-title","aiTitle":"Understand device scanning function logic","sessionId":"a6215578-74a6-49d9-b92d-9586fb9223e4"}
+{"type":"mode","mode":"normal","sessionId":"a6215578-74a6-49d9-b92d-9586fb9223e4"}

@@ -52,3 +52,6 @@
 {"parentUuid":"2dec47d2-4846-4305-b00d-af70f0872cdd","isSidechain":false,"attachment":{"type":"date_change","newDate":"2026-06-12"},"type":"attachment","uuid":"f69e5d18-ed7d-4374-ac83-8564798161b9","timestamp":"2026-06-12T09:29:28.228Z","userType":"external","entrypoint":"claude-desktop","cwd":"/Users/mkozin/Developer/radiacode-kmp","sessionId":"d6cbb107-a71f-483f-8b5a-4ba1040e9d23","version":"2.1.170","gitBranch":"Feature/RMP-54"}
 {"type":"last-prompt","lastPrompt":"https://radiacode.sentry.io/issues/7543391103/?alert_rule_id=17026035&alert_timestamp=1781159553083&alert_type=email&notification_uuid=171a71dd-42e5-4aca-8572-8c92846f1115&project=4511352848842752&ref…","leafUuid":"f69e5d18-ed7d-4374-ac83-8564798161b9","sessionId":"d6cbb107-a71f-483f-8b5a-4ba1040e9d23"}
 {"type":"ai-title","aiTitle":"Investigate Sentry error alert","sessionId":"d6cbb107-a71f-483f-8b5a-4ba1040e9d23"}
+{"type":"ai-title","aiTitle":"Investigate Sentry error alert","sessionId":"d6cbb107-a71f-483f-8b5a-4ba1040e9d23"}
+{"type":"ai-title","aiTitle":"Investigate Sentry error alert","sessionId":"d6cbb107-a71f-483f-8b5a-4ba1040e9d23"}
+{"type":"mode","mode":"normal","sessionId":"d6cbb107-a71f-483f-8b5a-4ba1040e9d23"}
