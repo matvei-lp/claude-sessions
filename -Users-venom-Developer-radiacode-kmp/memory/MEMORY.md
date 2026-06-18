@@ -6,4 +6,4 @@
 - [Avoid "advertisement" wording](avoid-advertisement-terminology.md) — don't overuse «реклама»/advertisement in BLE naming/descriptions
 - [Chat language: Russian](chat-language-russian.md) — отвечать в чате по-русски (просьба Матвея)
 - [No one-line functions](no-oneline-functions.md) — Kotlin-функции писать блочным телом, не сжимать в одну строку
-- [Claude sessions iCloud sync](claude-sessions-icloud-sync.md) — ~/.claude/projects = симлинк в iCloud; сессии шарятся venom↔mkozin через алиасы; не запускать на двух маках разом
+- [Claude sessions git sync](claude-sessions-git-sync.md) — ~/.claude/projects = приватный git-репо; сессии шарятся venom↔mkozin (алиасы + хуки pull/push); recents через tools/make_recents.py; не запускать на двух маках разом
