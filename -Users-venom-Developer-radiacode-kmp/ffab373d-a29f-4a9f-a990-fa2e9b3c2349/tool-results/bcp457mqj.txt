@@ -1,0 +1,142 @@
+[141 relevant lines]
+A> - **Flow из коробки** — `Scanner().advertisements: Flow<Advertisement>`, `peripheral.observe(): Flow<ByteArray>`, suspend `write(..., WithResponse)`. Ложится 1:1 на наш контракт `BleTransport.scan(): Flow<DiscoveredDevice>`. С native/Nordic пришлось бы вручную писать `callbackFlow`-мосты и сериализацию GATT-операций (Android разрешает одн
+A> Всё пинировано: **Kable 0.40.0** (`com.juul.kable:kable-core`), `kotlin.uuid.Uuid`, у `Advertisement` есть `name`/`peripheralName`/`identifier`/`rssi`. Начинаю с `commonMain` — контракт + модели + чистый парсер (его и покроем тестами).
+A> `./gradlew :shared:tasks` показывает: новый AGP KMP-плагин не создаёт host-unit-test задачу для Android по умолчанию (нет `withHostTest`), поэтому `commonTest` гоняется на iOS-таргетах. Запущу тест на iOS-симуляторе — это разом проверит и парсер, и что `commonMain` с coroutines нормально компилируется/линкуется под iOS (то есть фреймворк 
+A> Тест парсера зелёный на iOS-симуляторе, и `commonMain` с coroutines компилируется/линкуется под iOS — **фреймворк не сломан**. Финальная проверка: собираю отлаживаемый APK (мердж манифеста с новыми разрешениями + dex).
+A> - [BleTransport.kt](shared/src/commonMain/kotlin/com/radiacode/shared/ble/BleTransport.kt) — интерфейс транспорта, пока `scan(): Flow<DiscoveredDevice>`
+A> - [DiscoveredDevice.kt](shared/src/commonMain/kotlin/com/radiacode/shared/ble/DiscoveredDevice.kt), [RadiaCodeDevice.kt](shared/src/commonMain/kotlin/com/radiacode/shared/ble/RadiaCodeDevice.kt), [RadiaCodeModel.kt](shared/src/commonMain/kotlin/com/radiacode/shared/ble/RadiaCodeModel.kt) — модели (порт `RadiaCode.Model`)
+A> - [RadiaCodeDiscovery.kt](shared/src/commonMain/kotlin/com/radiacode/shared/ble/RadiaCodeDiscovery.kt) — чистый парсер рекламы (порт логики `BluetoothManager.didDiscover`: выбор имени → префикс `RadiaCode` → `#<id>`)
+A> **`androidMain`:** [KableBleTransport.kt](shared/src/androidMain/kotlin/com/radiacode/shared/ble/KableBleTransport.kt) — скан на Kable с фильтром по service UUID, разбор через общий парсер.
+A> - `:shared:iosSimulatorArm64Test` — тесты парсера зелёные **и** `commonMain`+coroutines компилируется/линкуется под iOS → **iOS-фреймворк не сломан**.
+A> - Состояние (мапа `id → устройство`) логически принадлежит слою, который владеет UI/агрегацией, а не stateless-транспорту. Так его тривиально тестировать и переиспользовать. iOS делит ровно так же: менеджер эмитит каждое обнаружение, а фича/VM их собирает.
+A> **Альтернатива**, если не нравится: можно поднять «живой дедуплицированный список» в репозиторий-хелпер над транспортом — `observeDevices(): Flow<List<DiscoveredDevice>>` через `runningFold`, и экраны потребляют уже готовый список. Тогда дедуп будет в одном месте, но всё ещё **не** в транспорте. Если хочешь такой вариант — скажи, оформлю 
+A> Что шарится в любом случае (это ~90% ценного): интерфейс `BleTransport`, модели, парсер `RadiaCodeDiscovery`, а дальше — кодек команд, отправка, репозитории, state-машина. Платформенная только тонкая «прослойка к радио».
+A> - `:shared:iosSimulatorArm64Test` ✅ — тесты парсера зелёные, common+Kable+coroutines компилируются/линкуются под iOS.
+A> 1. **Поток найденных + статус поиска** (`deviceFoundManager`) — это у нас **есть** (`BleTransport.scan()` → `DiscoveredDevice`). ✅
+A> Объём правок (если ок): добавить `BleState` в транспорт; `DeviceConnector` интерфейс; `DeviceListViewModel` + `DeviceListState` в commonMain; ручной `watch`-мост; на iOS — реализация `DeviceConnector` поверх Swift-коннекта + перевод `DeviceListView` на общий VM (+ лёгкая адаптация строк под `DiscoveredDevice`); опционально Android-экран н
+A> - `DeviceListViewModel` + `DeviceListState(isSearching, devices: List<DiscoveredDevice>, viewType)`.
+U> не ObservableObject а Observable, можно тестовй экран
+U> как узнать у нас сейчас используется observable или ObservableObject я не вижу по коду резолв мы точно нигде не будем использовать ObservableObject
+A> Теперь **узнать наглядно** можно так: в консоли при открытии экрана будет `[BleScanTest] VM Observable = true`. Если кто-то уберёт конформанс `Observable` или опустит deployment target ниже 17 — `assert` в DEBUG это поймает. Плюс гарантия по построению: min iOS 17 + конформанс ⇒ `@StateViewModel` всегда идёт по Observation, ветка Observab
+U> В целом твоя текущая задача была для того чтобы протестировать бле на айосе и андроиде, и все получилось, теперь же что я хочу.
+A> | **Находка скана** | разовое обнаружение: идентичность + RSSI | Swift `RadiaCode`, Kotlin `DiscoveredDevice` |
+A> - `DiscoveredDevice` — понятный, оставил бы.
+A> - Самый проблемный — **`BluetoothDevice`** (подключённый). Имхо → **`ConnectedDevice`** (параллель к `DiscoveredDevice`) или `DeviceSession`/`RadiaCodeSession`.
+A> - Мелочь, но показательная: сейчас `DiscoveredDevice.device: RadiaCodeDevice` даёт уродливое `discovered.device.device.identifier` — поле стоит переименовать (или сплющить).
+A> Мой recommended-набор: **идентичность `RadiaCodeDevice`** (или `RadiaCodeId`), **находка `DiscoveredDevice`**, **подключённый `ConnectedDevice`**.
+A> data class DiscoveredDevice(
+A> — `RadiaCodeDevice` удаляем; `RadiaCodeDiscovery.parse` возвращает плоский `DiscoveredDevice`; дедуп по `id`; `connect(...)` пока берёт `DiscoveredDevice` (а не «идентичность»). На iOS/Android чтение упрощается до `device.id` / `device.model.displayName` / `device.rssi`.
+A> Итого остаётся **2** понятия вместо 3: **находка `DiscoveredDevice`** (сейчас) и **подключённый `ConnectedDevice`** (когда дойдём до connect).
+A> | Находка скана (идент.+RSSI) | `RadiaCode` | **`DiscoveredDevice`** |
+A> Ключевые структурные правки (на будущее, по мере переноса): **транспорт-хендл вон из доменных типов** (у нас в Kotlin он уже не в `DiscoveredDevice` — то есть наша модель уже чище iOS); **один источник «текущего»** (один StateFlow вместо цепочки из трёх владельцев); **разделить setup vs send** в DeviceManager.
+A> 1. **Сейчас (только скан):** `DiscoveredDevice { id, model, rssi }` — плоский, как договорились. Отдельной идентичности пока нет.
+A> 2. С какого куска начинаем прод-ферст (моя ставка — перевод реального экрана списка на общий VM + попутно `DiscoveredDevice` flat; `connect` пока через существующий Swift-коннект)?
+U> мне не нравится твой вариант - DiscoveredDevice избыточен, DeviceSession - указывает на сессию, а у нас объект хранит настройки с прибора. Типа мы соединяем наш радиакод и обогащаем его
+A> **Сейчас (только скан):** просто переименовать наш `DiscoveredDevice` → в этот единый тип и оставить плоским (`id, model, rssi`); обёртку-идентичность `RadiaCodeDevice` убрать. Обогащённые поля добавим, когда дойдём до connect + чтения настроек.
+A> Скажешь имя — и я применю переименование на текущем (скан-)коде: `DiscoveredDevice`/`RadiaCodeDevice` → единый `RadiaCode`(flat), обновлю парсер, VM и чтения на iOS/Android.
+A> Назовёшь — и применю на текущем скан-коде: единый `RadiaCode { id, model, rssi }`, убрать обёртку-идентичность, обновить парсер/VM/чтения. Блок `info` заложим под будущий connect.
+A> - `ScanResult` / `Advertisement` — это про **BLE-находку/рекламу**, а не «роль устройства» (поэтому не «избыточно», как `DiscoveredDevice`);
+A> Чтобы не угадывать в пятый раз: скажи, что именно в `DiscoveredDevice` царапало — слово `Device`-филлер, или «Discovered» как роль? И что важнее из (a)/(b)/(c)? От этого имя выберется само.
+A> И это не новая идея с потолка: **у нас в Kotlin уже так** — наш скан-тип `DiscoveredDevice` Kable-peripheral не держит, его прячет `KableBleTransport`. То есть наша текущая модель уже чище iOS по этому пункту; iOS подтянем при cutover (когда `RadiaCode`/`BluetoothDevice` перестанут хранить `CBPeripheral`/`Peripheral`, а связь будет жить в
+A> 1. **Чистые типы-значения и парсинг** (без I/O): `RadiaCodeModel`, парсер рекламы, `BluetoothSignal`, единицы, калибровка/уровни алармов. ← **отсюда стартуем**, самое мелкое и безопасное.
+A> (Альтернатива на ту же ступень — **парсер рекламы** `RadiaCodeDiscovery`: iOS `didDiscover` зовёт его вместо своего разбора. Тоже маленький.)
+A> 1. Стартуем с `RadiaCodeModel` или с парсера? (могу за минуту глянуть, что из них реально меньше по числу затрагиваемых мест на iOS).
+A> - **Безопасно сейчас (чистое, транзиентное, НЕ в БД):** кодек команд (байтовый framing, encode/decode), парсер рекламы, `BluetoothSignal` (RSSI), чистая математика (расчёты дозы/спектра — функция, не хранилище).
+A> Тогда безопасный первый PR — **парсер рекламы `RadiaCodeDiscovery`** (находки скана не хранятся; парсер возвращает данные, а Swift кладёт их в свои пока-Swift типы — БД не трогаем) или **кодек команд** (чисто, но больше).
+A> - Первый PR: **парсер рекламы** `RadiaCodeDiscovery` (вообще без касания персиста — самый чистый) или **`RadiaCodeModel`** (безопасно, но с выравниванием строк-имён).
+A> С чего стартуем — парсер или модель? И заводим Jira-задачу + ветку?
+A> - Сейчас в `BluetoothManagerImpl.didDiscover` инлайном: проверка префикса `RadiaCode`, split по `#`, извлечение `id` и имени модели.
+A> - Заменяем на вызов общей `Shared.RadiaCodeDiscovery` → получаем `id` и `modelName` (строки), дальше как сейчас: `RadiaCode(device: .init(identifier: id, model: modelName), …)`.
+A> Мне надо чуть подровнять общую функцию, чтобы отдавала сырые `id` + `modelName` строкой (сейчас она возвращает `DiscoveredDevice` с enum-моделью) — пара строк в commonMain.
+A> fun scan(): Flow<DiscoveredDevice>
+A> И важный нюанс на будущее: наш `DiscoveredDevice` **не несёт** Kable-хендл/`Advertisement` (мы держали его доменно-чистым, без платформенного). Значит, когда будем делать connect, транспорту придётся либо **запоминать `Advertisement`** из скана (карта `id → advertisement`), либо уметь подключаться по идентификатору — иначе по голому `Disc
+A> Хочешь, следующим шагом распишу/сделаю именно connect (добавить `connect` в `BleTransport` + `DeviceConnection` на Kable + хранение advertisement)? Но это уже не «самый маленький кусок» — крупнее парсера.
+A> - **Первый прод-ферст кусок:** парсер имени из рекламы.
+A> Ничего сейчас не делаю — когда захочешь начать, скажи, и пойдём с самого маленького куска (парсер), уже по согласованному методу.
+A> - Создание `RadiaCode.Device(identifier:model:)` — всего **2 места** (FoodAnalysisObject + mock). `init?(serialNumber:)` — вызовов не нашёл (возможно мёртвый).
+A> - `RadiaCodeModel` — **sealed class** (из-за открытого кейса): объекты `RC101…Zero` + `Custom(name)`; computed `name`/`family`; companion `fromName(rawValue)` / `fromSerialCode(code)`. **Строки сохранить байт-в-байт** (включая Zero-асимметрию).
+A> Construction-сайты понятны. Перед тем как писать Swift-cutover, выверю **точные Swift-имена** общего API (companion/фабрики) по сгенерированному заголовку фреймворка — чтобы не гадать с синтаксисом `companion`. Собираю фреймворк и грепаю заголовок.
+A> Заголовок подтвердил синтаксис: `RadiaCodeDevice.companion.fromName(identifier:modelName:)`, `.fromSerialNumber(serialNumber:)` (опциональный), `RadiaCodeModel.companion.fromName(rawValue:)`, `.DEFAULT_NAME`. Пишу cutover.
+A> - 3 construction-сайта (`FoodAnalysisObject`, `TrackDTO`, `TrackShema`) → `RadiaCodeDevice.companion.fromName/fromSerialNumber`.
+A> **Корень проблемы:** я в construction-сайтах написал `RadiaCodeDevice.companion.fromName(...)` напрямую, а эти файлы **не импортируют `Shared`** → «cannot find RadiaCodeDevice in scope» в каждом. Отсюда и whack-a-mole.
+A> self.init(identifier: identifier, model: RadiaCodeModel.companion.fromName(rawValue: modelName))
+A> guard let d = RadiaCodeDevice.companion.fromSerialNumber(serialNumber: serialNumber) else { return nil }
+A> static let mock = RadiaCodeDevice.companion.fromName(identifier: "RC-103-000001", modelName: "RadiaCode-103")
+U> - `shared/src/commonMain/kotlin/com/radiacode/shared/device/RadiaCodeModel.kt` (NEW, present): `sealed class RadiaCodeModel` with `data object RadiaCode101/102/103/103G/110/Zero` + `data class Custom(rawName)`; computed `name` (Zero→"RadiaCode-Zero") and `family`; companion `DEFAULT_NAME="RadiaCode"`, `fromName(rawValue)` (matches "RadiaC
+U> - `shared/src/commonMain/kotlin/com/radiacode/shared/device/RadiaCodeDevice.kt` (NEW, present): `class RadiaCodeDevice(val identifier, val model)` with equals/hashCode by `identifier` only; companion `fromName(identifier, modelName)`, `fromSerialNumber(serialNumber): RadiaCodeDevice?`.
+U> - Generated header confirmed Swift API: `RadiaCodeDevice.companion.fromName(identifier:modelName:)`, `.fromSerialNumber(serialNumber:)` (optional), `RadiaCodeModel.companion.fromName(rawValue:)`/`.fromSerialCode(serialCode:)`/`.DEFAULT_NAME`, `RadiaCodeFamily` cases `radiacode10x/11x/103g/41x`.
+U> - **Most recent error (UNRESOLVED, led to rollback)**: iOS model cutover failed `BUILD FAILED` with `cannot find 'RadiaCodeDevice' in scope` (BluetoothManager.swift:189) and earlier `cannot convert 'String' to 'RadiaCodeModel'` (Spectrogram.swift:41). Root cause: I changed construction sites to call `RadiaCodeDevice.companion.fromName(...
+U> - **User feedback (critical, repeated)**: Multiple times the user was upset I acted without showing diffs/getting consent ("почему ты опять взялся писать… не спросив"). Memory rule: NO git ops or file edits without direct consent; show diffs first; "давай начнём" approves direction not concrete edits. Also: keep things SIMPLE ("как то всё
+U> - "мне не нравится твой вариант - DiscoveredDevice избыточен, DeviceSession - указывает на сессию... Типа мы соединяем наш радиакод и обогащаем его"
+U> I had just run `git restore` on the 6 iOS Swift files I'd broken (RadiaCode.swift, FoodAnalysisObject.swift, TrackDTO.swift, TrackShema.swift, Spectrogram.swift, BluetoothManager.swift), reverting them to original committed state. `git status --short` now shows only: ` M iosApp/RadiaCode/.../WidgetLiveActivityManager.swift` (NOT ours, lea
+A> Не отказался — отложил. И название было другое: `RadiaCodeDiscovery` (не `DiscoveryDevice`).
+A> **Что это было.** Порт результата скана — то, что в Swift собирает `centralManager(didDiscover:)` + внешний `struct RadiaCode`. По стэш-тесту его API такой:
+A> RadiaCodeDiscovery.parse(name, localName, fallbackId, rssi): RadiaCodeDiscovery?
+A> **Почему его сейчас нет в commonMain.** Мы идём снизу вверх и в этот PR тащим только **листовую идентичность** — `RadiaCodeDevice` / `RadiaCodeModel` / `RadiaCodeFamily`. А `RadiaCodeDiscovery` несёт `rssi`/сигнал и рождается в **скане**, т.е. это уже ветка транспорта/BLE. Поэтому он едет туда, а не в PR с моделями.
+A> **Честный нюанс (нашёл сейчас).** В стэше уцелел **только тест** `RadiaCodeDiscoveryTest.kt` — продакшн-файл `RadiaCodeDiscovery.kt` в стэш не попал (он был untracked, а `git stash` его не захватил). Так что когда дойдём — пересоберём тип из двух источников: этого теста (он полностью задаёт API и поведение) + живого свифтового `BluetoothM
+U> companion object
+A> В Kotlin **нет ключевого слова `static`**. Всё, что в Swift было бы `static` (константы, фабрики, члены уровня типа, а не экземпляра), кладётся в `companion object` — это «спутник» класса, единственный на класс.
+A> companion object {                                  // ← коробка для "static"
+A> | `static let` / `static func` | член `companion object` |
+A> | `enum.staticThing` | `Class.thing` (companion прозрачен) |
+A> **Важный нюанс для нашего кейса (Swift-интероп):** из Swift companion-члены видны не напрямую, а через `.companion`:
+A> RadiaCodeModel.companion.fromName(rawValue: "RadiaCode-103")
+A> RadiaCodeModel.companion.DEFAULT_NAME
+A> Поэтому в прошлом предложении по cutover я и писал `RadiaCodeModel.companion.fromName(...)` — на стороне Swift это «static» Kotlin-класса.
+A> Короче: `companion object` = «сюда складываем то, что в Swift было `static`».
+A> Это замена свифтового `static` — в Kotlin ключевого слова `static` нет, поэтому всё «уровня типа» (константы и фабрики) кладут в `companion object`. Он один на класс, вызывается через имя класса:
+A> companion object {
+A> Короче: **`companion object` = «сюда складываем то, что в Swift было бы `static`»**.
+A> (из Swift, если будешь дёргать его через мост, видно как `Foo.companion.create()`)
+A> ## 2. Поэтому идиома Kotlin — именованные фабрики в `companion object`
+A> | `init?` (возвращает nil) | фабрика в `companion object`, возвращает `T?` |
+U> data object RadiaCode101 : RadiaCodeModel()
+U> data object RadiaCode102 : RadiaCodeModel()
+U> data object RadiaCode103 : RadiaCodeModel()
+U> data object RadiaCode103G : RadiaCodeModel()
+U> data object RadiaCode110 : RadiaCodeModel()
+U> data object RadiaCodeZero : RadiaCodeModel()
+A> **Главный вывод:** прямых `Model(rawValue:)` / `Model(serialCode:)` **вне `RadiaCode.swift` нет** — модель всегда строят через `Device`. Снаружи важны только `.name`, `.family.postFix`, `defaultName` и сам тип. Так что твой `operator fun invoke` норм: его «некрасивость» в Swift (`Model.companion.invoke(rawValue:)`) никого не задевает, пот
+A> - `companion` с `fromName`/`fromSerialNumber` **закомментирован** — а его зовут и тесты, и (в Swift) `BluetoothManager`/`Spectrogram`/`FoodAnalysis`/`Track`.
+A> - ⚠️ И при раскомментировании: внутри стоит `RadiaCodeModel.Companion.fromName(modelName)`, но `fromName` ты переименовал в `invoke` → строку надо поправить на `RadiaCodeModel(modelName)`.
+A> Я вижу, ты сам сейчас правишь эти файлы (отсюда и вопросы про `companion object` / два инита). Поэтому не лезу. **Что сделать мне:** вернуть `Device.kt`, обновить тест, оба — или ты сам пишешь, а я просто рядом подсказываю?
+A> Чтобы не угадывать (и не уйти опять в «сложно»): по твоим прошлым словам — *«соединяем радиакод и обогащаем его»*, *«DiscoveredDevice избыточен»* — у меня ощущение, что концептуально ты хочешь **меньше типов**: не свифтовую матрёшку `Device → Model → Family`, а что-то более цельное.
+A> data object RadiaCode101 : …;  data class Other(val rawName: String) : …
+A> companion object { operator fun invoke(name); fun fromSerialCode(code) }
+A> companion object { fun fromSerialCode(code): RadiaCodeModel }
+A> 2. **`RadiaCodeModel` остаётся**, но в роли «парсер имени» (его зовут, когда нужны модель/семейство/постфикс), а не как поле сущности. `RadiaCodeFamily` — на твоё усмотрение (можно свернуть в `postFix` на модели, но это уже не про эту сущность).
+A> - **`RadiaCodeModel` остаётся** парсером имени: где нужны модель/постфикс — зовут `RadiaCodeModel(radiaCode.name)`.
+A> data object RadiaCode101 : RadiaCodeModel("RadiaCode-101")
+A> data object RadiaCodeZero : RadiaCodeModel("RadiaCode-Zero")
+A> data object RadiaCode102 : RadiaCodeModel("RadiaCode-102")
+A> data object RadiaCode103 : RadiaCodeModel("RadiaCode-103")
+A> data object RadiaCode103G : RadiaCodeModel("RadiaCode-103G")
+A> data object RadiaCode110 : RadiaCodeModel("RadiaCode-110")
+A> Компиляцию пока не гоняю: модуль всё равно не соберётся не из-за этой правки, а из-за тех двух нерешённых блокеров — `RadiaCodeDevice.kt` (лишняя `}` + закомментированные equals/companion) и устаревший тест. Они ждут, пока добьём новую концепцию (`RadiaCode` вместо `RadiaCodeDevice`). Скажешь, когда к ним вернуться.
+A> data object RadiaCode101  : RadiaCodeModel("RadiaCode-101",  RadiaCodeFamily.RadiaCode10x)
+A> data object RadiaCode102  : RadiaCodeModel("RadiaCode-102",  RadiaCodeFamily.RadiaCode10x)
+A> data object RadiaCode103  : RadiaCodeModel("RadiaCode-103",  RadiaCodeFamily.RadiaCode10x)
+A> data object RadiaCode103G : RadiaCodeModel("RadiaCode-103G", RadiaCodeFamily.RadiaCode103G)
+A> data object RadiaCode110  : RadiaCodeModel("RadiaCode-110",  RadiaCodeFamily.RadiaCode11x)
+A> data object RadiaCodeZero : RadiaCodeModel("RadiaCode-Zero", RadiaCodeFamily.RadiaCode41x)
+A> - Что не так: `equals`/`hashCode` и `companion` (`fromName`/`fromSerialNumber`) **закомментированы** (строки 15–34), и из-за этого на стр. 35 висит лишняя `}` — у класса нет тела-блока, а скобка осталась.
+A> RadiaCodeDevice(identifier, RadiaCodeModel(modelName))            // было .Companion.fromName
+A> Скан на каждое устройство даёт: имя/localName, платформенный id, RSSI (+ платформенный хэндл). Парсим имя (`#`-split → id + модель) → получаем `RadiaCodeDevice`, добавляем `signal`. Это ровно логика свифтового `didDiscover` + застэшенный `RadiaCodeDiscovery.parse(...)` — оттуда и вытащим.
+A> 2. **Имя модели-находки:** ты раньше браковал `DiscoveredDevice`/`Discovery`. Как назвать «`device + signal`»? (можно решить сейчас или когда дойдём до ветки).
+A> `parseScan(name, fallbackId)` — порт логики свифтового `didDiscover` (split по `#` → модель+id, иначе fallback). Это застэшенный `RadiaCodeDiscovery.parse` — оттуда возьмём.
+A> Тут `enum` идеально подходит (закрытый набор, никакого `Other`). Порт в Kotlin — в стиле твоего `RadiaCodeFamily` (computed `value`, фабрика в companion):
+A> Но «вызов как у конструктора» даёт `operator fun invoke` в companion:
+A> | `RadiaCodeDiscovery` | из стэша; «обнаружение» |
+A> | `DiscoveredRadiaCode` | ты браковал `DiscoveredDevice`, но тут с RadiaCode |
+A> Норм, и держит семейство `RadiaCode*` (хорошо для автокомплита/сортировки). Один нюанс: это **причастие** — читается как «радиакод обнаружен», а тип обычно существительное. Существительное-близнец с тем же префиксом — **`RadiaCodeDiscovery`**. Оба рабочие; если глаз не цепляет за причастие — бери `RadiaCodeDiscovered`, фиксируем. (Из твое
+U> Давай создадим RadiaCodeDiscovery
+A> `RadiaCodeDevice.identifier` подтверждён, всё в одном пакете — импорты не нужны. Создаю `RadiaCodeDiscovery`:
+A> Создал — `core/device/model/RadiaCodeDiscovery.kt`. `equals`/`hashCode` переиспользуют `device ==` (а он по `identifier`), так что DRY и без `.identifier` напрямую. Импортов нет — всё в одном пакете.
+A> Заодно `BluetoothSignal` теперь не висит без дела — `RadiaCodeDiscovery` его потребляет.
+A> RadiaCodeDiscovery   находка: device + signal + peripheralId  (== по device)
+A> Чистые данные, ноль зависимостей, ноль Kable. `RadiaCodeDiscovery` ждёт своего производителя — сканера.
+A> - `DeviceScanner` (интерфейс) → `Flow<RadiaCodeDiscovery>` + `connect(...) → DeviceConnection`
+A> - `KableDeviceScanner` + `parseScan(...)` (порт `didDiscover` из стэша)
+A> shared/.../core/device/model/RadiaCodeDiscovery.kt   +16
+A> shared/.../core/device/model/RadiaCodeDiscovery.kt
+A> - `shared/` — слой моделей: `RadiaCodeModel`, `RadiaCodeDevice`, `RadiaCodeFamily`, `BluetoothSignal`, `RadiaCodeDiscovery` + тесты;

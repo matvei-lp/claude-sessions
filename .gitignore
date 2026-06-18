@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+
+# Local backups
+*.bak
+*.bak-*
+
+# Per-machine alias symlinks (each machine recreates its own; data lives in -Users-venom-*)
+-Users-mkozin-*
+
+# Python cache
+tools/__pycache__/

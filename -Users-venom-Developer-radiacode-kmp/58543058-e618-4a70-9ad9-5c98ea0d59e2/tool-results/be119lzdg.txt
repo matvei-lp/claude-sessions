@@ -1,0 +1,461 @@
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/ControlCenter/DeviceInfo/DeviceInfoAnalyticsEvent.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/ControlCenter/DeviceInfo/DeviceInfoView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/ControlCenter/DeviceInfo/DeviceInfoViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/ControlCenter/DeviceInfo/Views/AlarmLevels/AlarmControlView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/ControlCenter/DeviceInfo/Views/AlarmLevels/AlarmLevelSetupView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/ControlCenter/DeviceInfo/Views/AlarmLevels/AlarmLevelSetupViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/ControlCenter/DeviceInfo/Views/AlarmLevels/AlarmWheel/AlarmLevelRowView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/ControlCenter/DeviceInfo/Views/AlarmLevels/AlarmWheel/AlarmLevelWheelVerticalView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/ControlCenter/DeviceInfo/Views/AlarmLevels/AlarmWheel/AlarmLevelsWheelsView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/ControlCenter/DeviceInfo/Views/AlarmLevels/AlarmWheel/AlarmWheelModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/ControlCenter/DeviceInfo/Views/AlarmLevels/AlarmsLevelAnalyticsEvent.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/ControlCenter/DeviceInfo/Views/AlarmLevels/AlarmsLevelView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/ControlCenter/DeviceInfo/Views/AlarmLevels/UpdateAlarmsUseCase.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/ControlCenter/DeviceInfo/Views/Calibration/BySpectrum/CalibrationBySpectrumView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/ControlCenter/DeviceInfo/Views/Calibration/BySpectrum/CalibrationBySpectrumViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/ControlCenter/DeviceInfo/Views/Calibration/BySpectrum/SpectrumCalibrationListUseCase.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/ControlCenter/DeviceInfo/Views/Calibration/CalibrationSelectView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/ControlCenter/DeviceInfo/Views/Calibration/CalibrationSelectViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/ControlCenter/DeviceInfo/Views/Calibration/Manual/ManualCalibrationValidators.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/ControlCenter/DeviceInfo/Views/Calibration/Manual/ManualCalibrationView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/ControlCenter/DeviceInfo/Views/ConnectionErrorView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/ControlCenter/DeviceInfo/Views/DeviceControlCenter/DeviceControlCenterAnalyticsEvent.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/ControlCenter/DeviceInfo/Views/DeviceControlCenter/DeviceControlCenterView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/ControlCenter/DeviceInfo/Views/DeviceControlCenter/DeviceControlCenterViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/ControlCenter/DeviceInfo/Views/DeviceControlCenter/View/SwitchControlView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/ControlCenter/DeviceInfo/Views/Firmware/DeviceInfoFirmwareAnalyticsEvent.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/ControlCenter/DeviceInfo/Views/Firmware/DownloadFirmwareProgressStyle.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/ControlCenter/DeviceInfo/Views/Firmware/FirmwareView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/ControlCenter/DeviceInfo/Views/Firmware/FirmwareViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/ControlCenter/DeviceList/DeviceListAnalyticsEvent.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/ControlCenter/DeviceList/DeviceListView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/ControlCenter/DeviceList/DeviceListViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/ControlCenter/DeviceList/Views/DeviceErrorView/DeviceErrorView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/ControlCenter/DeviceList/Views/DeviceView/ConnectionDeviceView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/ControlCenter/DeviceList/Views/DeviceView/DeviceView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dashboard/DashboardAnalyticsEvent.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dashboard/DashboardView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dashboard/DashboardViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dashboard/Views/BluetoothIndicatorInfo/BluetoothIndicatorInfoView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dashboard/Views/BluetoothIndicatorInfo/BluetoothIndicatorInfoViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dashboard/Views/FoodAnalysisPopUpResult/FoodAnalysisPopUpResultView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dashboard/Views/Signalization/SignalizationChartView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dashboard/Views/Signalization/SignalizationView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dashboard/Views/Signalization/SignalizationViewModel+Dependency.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dashboard/Views/Signalization/SignalizationViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dashboard/WidgetLiveActivity/WidgetLiveActivityManager.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dashboard/Widgets/BaseWidgetView/BaseWidgetView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dashboard/Widgets/CountDoseRate/CountDoseRateWidgetView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dashboard/Widgets/CountDoseRate/DoseRateWidgetChart.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dashboard/Widgets/Dose/DoseAnalyticsEvent.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dashboard/Widgets/Dose/DoseWidgetContainerView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dashboard/Widgets/Dose/DoseWidgetCounterView/DoseWidgetCounterChart.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dashboard/Widgets/Dose/DoseWidgetCounterView/DoseWidgetCounterView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dashboard/Widgets/Dose/DoseWidgetView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dashboard/Widgets/Events/EventWidgetAlarmModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dashboard/Widgets/Events/EventsWidgetView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dashboard/Widgets/FoodContamination/FoodContaminationEmptyWidgetView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dashboard/Widgets/FoodContamination/FoodContaminationWidgetView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dashboard/Widgets/Search/SearchWidgetView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dashboard/Widgets/Spectrogram/SpectrogramWidgetView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dashboard/Widgets/Spectrum/SpectrumWidgetView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dashboard/Widgets/Spectrum/SpectrumWidgetViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dashboard/Widgets/Track/TrackWidgetView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/Domain/DoseCounterFetchUseCase.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/Domain/DoseCounterRepository.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/Domain/DoseCounterSaveUseCase.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/Domain/ExcludedIntervalsRepository.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/DoseChartView/DoseChartView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/DoseChartView/DoseChartViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/DoseChartView/Model/DoseBar.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/DoseChartView/Model/DosePage.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/DoseChartView/Model/DoseSegment.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/DoseChartView/Options/DoseAnnualReferenceLevelView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/DoseChartView/Options/DoseHandleBackgroundRadiationView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/DoseChartView/Options/DoseOptionSelectBackgroundLevelView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/DoseChartView/Options/DoseOptionsView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/DoseChartView/Options/Views/DoseOptionContainer.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/DoseChartView/Options/Views/DoseRowButton.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/DoseChartView/Views/DoseChartHeaderView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/DoseChartView/Views/DoseChartPageView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/DoseChartView/Views/DoseChartYAxis.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/DoseView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/DoseWidgets/BaseDoseWidget.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/DoseWidgets/DeviceDose/DeviceDoseWidgetView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/DoseWidgets/DeviceDose/DeviceDoseWidgetViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/DoseWidgets/DeviceDose/ResetDoseAlertModifier.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/DoseWidgets/PersonalDose/PersonalDoseWidgetView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/DoseWidgets/PersonalDose/PersonalDoseWidgetViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/DoseWidgets/Views/CapsuleProgressBar.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/InfoView/DoseInfoBackgroundHandlingView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/InfoView/DoseInfoSheetView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/Model/DoseAnchor.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/Model/DoseCounter.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/Model/DoseSettings/DoseSettings.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/Model/DoseSettings/DoseSettingsStore.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/Model/ExcludedInterval.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/Network/DoseBackgroundLevel/DoseBackgroundLevelDTO.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/Network/DoseBackgroundLevel/DoseBackgroundLevelTarget.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/Onboarding/DoseOnboardingView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/Onboarding/DoseOnboardingViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/Onboarding/Pages/DoseOnboardingBaseInfoPageView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/Onboarding/Pages/DoseOnboardingDoseInfoPageView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/Onboarding/Pages/DoseOnboardingHandleBackgroundPageView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/Onboarding/Pages/DoseSelectBackgroundLevel/DoseSelectBackgroundLevelView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/Onboarding/Pages/DoseSelectBackgroundLevel/DoseSelectBackgroundLevelViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/Onboarding/Views/DoseMapAnnotation.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/Onboarding/Views/DoseOnboardingCellView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/Onboarding/Views/OnboardingPage.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/Onboarding/Views/StaticPageControl.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/Services/DoseBackgroundLevel/DoseBackgroundLevelRepository.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/Services/DoseBackgroundLevel/DoseBackgroundLevelUseCase.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/Services/DoseBackgroundLevel/RadiaverseDoseFetching.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/Services/DoseBarCalculator.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/Services/DoseBarViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/Services/DoseCounterCache.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/Services/DoseIntervalsBuilder.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/Services/DosePageBuilder.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/Services/DoseSampleManager.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/Services/ExcludedIntervalsManager.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Dose/Services/PersonalDoseResetStore.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Events/Domain/EventsDatabaseManager.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Events/Domain/EventsRepository.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Events/Domain/Models/Event.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Events/Domain/Models/EventFilter.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Events/Domain/Models/EventGroup.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Events/Domain/Models/EventRowModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Events/Domain/Models/UpdateAlarm.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Events/Domain/UseCase/ActiveAlarmUseCase.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Events/Domain/UseCase/EventsUseCase.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Events/EventsAnalyticsEvent.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Events/EventsView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Events/EventsViewModel+Dependency.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Events/EventsViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Events/Filter/EventsFilterView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Events/Rows/EventAlarmDataView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Events/Rows/EventContainerRow.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Events/Rows/EventRowView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/ActiveFoodAnalysisViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/Domain/Repository/FoodAnalysisRepository+Dependency.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/Domain/Repository/FoodAnalysisRepository.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/Domain/UseCase/ActiveFoodAnalysisUseCase.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/Domain/UseCase/FoodAnalysisGetUseCase.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/Domain/UseCase/RemoveFoodAnalysisUseCase.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/Domain/UseCase/UpdateFoodAnalysisUseCase.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/FoodAnalysis/Details/FoodAnalysisDetailsView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/FoodAnalysis/FoodAnalysisView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/FoodAnalysis/FoodAnalysisViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/FoodAnalysis/Options/FoodAnalysisChangeMPCRegionView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/FoodAnalysis/Options/FoodAnalysisChangeMPCRegionViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/FoodAnalysis/Options/FoodAnalysisOptions.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/FoodAnalysis/Options/FoodAnalysisOptionsView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/FoodAnalysis/Views/FoodAnalysisInfoView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/FoodAnalysis/Views/FoodAnalysisRenameView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/FoodAnalysis/Views/FoodAnalysisResultView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/FoodAnalysis/Views/Spectrum/ActivitySpectrumPreview.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/FoodAnalysis/Views/Spectrum/FoodAnalysisSpecrtumChartView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/FoodAnalysis/Views/Spectrum/FoodAnalysisSpecrtumView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/FoodContaminationView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/FoodContaminationViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/Model/FoodAnalysis+Formatting.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/Model/FoodAnalysis.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/Model/FoodContaminationSourceData.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/SourceData/FoodContaminationSourceDataView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/SourceData/FoodContaminationSourceDataViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/SourceData/Tabs/ContainerSelection/ContainerSelectionView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/SourceData/Tabs/ContainerSelection/ContainerSelectionViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/SourceData/Tabs/ContainerSelection/Model/MeasurementContainer.Type+Link.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/SourceData/Tabs/ContainerSelection/Model/MeasurementContainer.Type.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/SourceData/Tabs/ContainerSelection/Model/MeasurementContainer.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/SourceData/Tabs/ContainerSelection/Services/MeasurementContainerDTO.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/SourceData/Tabs/ContainerSelection/Services/MeasurementContainerProvider.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/SourceData/Tabs/ContainerSelection/Views/ContainerCardView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/SourceData/Tabs/ContainerSelection/Views/ContainerInfoView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/SourceData/Tabs/ProductSelection/Model/Product.Category.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/SourceData/Tabs/ProductSelection/Model/Product.Food.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/SourceData/Tabs/ProductSelection/Model/Product.Region.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/SourceData/Tabs/ProductSelection/Model/Product.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/SourceData/Tabs/ProductSelection/Model/ProductDto.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/SourceData/Tabs/ProductSelection/ProductSelectionView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/SourceData/Tabs/ProductSelection/ProductSelectionViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/SourceData/Tabs/ProductSelection/SelectRegionView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/SourceData/Tabs/ProductSelection/Services/FoodActivityProvider.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/SourceData/Tabs/ProductSelection/Services/ProductRegionProvider.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/SourceData/Tabs/SpectrumSelection/SpectrumFoodBackgroundListUseCase.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/SourceData/Tabs/SpectrumSelection/SpectrumSelectionView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/SourceData/Tabs/SpectrumSelection/SpectrumSelectionViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/SourceData/Tabs/WeightSelection/FoodWeightSelectionView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/View/CardView/AnalysisCardView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/View/CardView/AnalysisIconView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/FoodContamination/View/CardView/AnalysisInfoView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Profile/AboutView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Profile/Database/DatabaseOptionsView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Profile/Database/DatabaseOptionsViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Profile/Database/Import/ImportDatabaseView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Profile/Database/Import/ImportFailureView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Profile/ProfileAnalyticsEvent.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Profile/ProfileView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Radiationlevel/Charts/RadiationLevelView/ChartView/DGChartsHelpers/ChartAxisFormatter.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Radiationlevel/Charts/RadiationLevelView/ChartView/DGChartsHelpers/LineChartView+FocusRect.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Radiationlevel/Charts/RadiationLevelView/ChartView/DGChartsHelpers/NoOpLegendRenderer.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Radiationlevel/Charts/RadiationLevelView/ChartView/DGChartsHelpers/NoOpYAxisRenderer.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Radiationlevel/Charts/RadiationLevelView/ChartView/DGChartsHelpers/RadiationLevelChartCoordinator.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Radiationlevel/Charts/RadiationLevelView/ChartView/DGChartsHelpers/RadiationLevelChartRenderer.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Radiationlevel/Charts/RadiationLevelView/ChartView/DGChartsHelpers/TimeOrderedLineDataSet.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Radiationlevel/Charts/RadiationLevelView/ChartView/RadiationLevelChartView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Radiationlevel/Charts/RadiationLevelView/ChartView/RadiationLevelOverlayView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Radiationlevel/Charts/RadiationLevelView/Model/ChartModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Radiationlevel/Charts/RadiationLevelView/Model/ChartModelBuilder.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Radiationlevel/Charts/RadiationLevelView/RadiationLevelView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Radiationlevel/Charts/RadiationLevelView/RadiationLevelViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Radiationlevel/HardnessView/HardnessChartView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Radiationlevel/HardnessView/HardnessChartViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Radiationlevel/HardnessView/HardnessView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Radiationlevel/Model/DataBufferDTO.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Radiationlevel/Options/RadiationLevelOptions.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Radiationlevel/Options/RadiationlevelScreenStylePickerView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Radiationlevel/Options/RadiationlevelTimeRangePickerView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Radiationlevel/RadiationlevelAnalyticsEvent.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Radiationlevel/RadiationlevelMainView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Radiationlevel/RadiationlevelMainViewModel+Dependency.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Radiationlevel/RadiationlevelMainViewOptions.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Search/Chart/SearchChartView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Search/Chart/SearchChartViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Search/Options/SearchOptionsView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Search/SearchAnalyticsEvent.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Search/SearchView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Search/SearchViewModel+Dependency.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Search/SearchViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Search/Speedometer/SpeedometerView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Search/Speedometer/SpeedometerViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/Chart/ChartUI/BreakTriangleShapeRenderer.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/Chart/ChartUI/ChartPositionX.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/Chart/ChartUI/SpectrogramChart.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/Chart/ChartUI/SpectrogramChartCoordinator.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/Chart/ChartUI/SpectrogramChartRenderer.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/Chart/ChartUI/SpectrogramScatterChartView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/Chart/ChartUI/TimeAxisValueFormatter.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/Chart/SpectrogramChartEmptyView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/Chart/SpectrogramChartView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/Chart/SpectrogramChartViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/Chart/SpectrogramRangeSelectionView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/Chart/SpectrumDetection/SpectrumDetectionChart.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/Chart/SpectrumDetection/SpectrumDetectionChartView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/Domain/Repository/SpectrogramRepository.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/Domain/Spectrogram+Dependency.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/Domain/UseCase/SpectrogramGetUseCase.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/Domain/UseCase/SpectrogramImportUseCase.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/Domain/UseCase/SpectrogramRemoveCase.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/Domain/UseCase/SpectrogramSaveUseCase.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/Domain/UseCase/SpectrogramUpdateUseCase.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/Library/SpectrogramLibraryView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/Library/SpectrogramLibraryViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/Model/DTO/SpectrogramDTO+Export.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/Model/DTO/SpectrogramDTO+Import.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/Model/DTO/SpectrogramDTO.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/Model/Spectrogram.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/Model/SpectrogramChartModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/Model/SpectrogramModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/Options/SpectrogramOptions.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/Options/SpectrogramOptionsView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/Preview/SpectrogramPreviewView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/Preview/SpectrogramPreviewViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/SaveSpectrogram/SaveSpectrogramModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/SaveSpectrogram/SaveSpectrogramView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/SaveSpectrogram/SaveSpectrogramViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/SpectrogramAnalyticsEvent.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/SpectrogramMainView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/SpectrogramViewModel+Dependency.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/SpectrogramViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrogram/Views/SpectrogramRenameView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Domain/SpectrumMainLibraryUseCase+Dependency.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Domain/SpectrumMainLibraryUseCase.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Domain/SpectrumSaveUseCase.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Library/BackgroundSpectrumSelect/BackgroundSpectrumOperationView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Library/BackgroundSpectrumSelect/BackgroundSpectrumOperationViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Library/BackgroundSpectrumSelect/BackgroundSpectrumPreviewSelection.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Library/BackgroundSpectrumSelect/BackgroundSpectrumSelectView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Library/Domain/Repositories/SpectrumFolderRepository+Dependency.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Library/Domain/Repositories/SpectrumFolderRepository.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Library/Domain/Repositories/SpectrumRepository+Dependency.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Library/Domain/Repositories/SpectrumRepository.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Library/Domain/UseCases/SpectrumCreateFolderUseCase.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Library/Domain/UseCases/SpectrumRemoveUseCase.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Library/Domain/UseCases/SpectrumRenameUseCase.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Library/Domain/UseCases/SpectrumUpdateCoefficientsUseCase.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Library/Move/Domain/SpectrumMoveUseCase.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Library/Move/SpectrumLibraryMoveView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Library/Move/SpectrumLibraryMoveViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Library/Move/View/MovingItemsView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Library/SpectrumLibraryView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Library/SpectrumLibraryViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Library/View/Folder/Rename/SpectrumFolderRenameUseCase.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Library/View/Folder/Rename/SpectrumFolderRenameView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Library/View/Folder/Rename/SpectrumFolderRenameViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Library/View/Folder/SpectrumFolderListView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Library/View/Folder/SpectrumFolderView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Library/View/SpectrumFolderContentView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Library/View/SpectrumRow/Rename/SpectrumRowRenameView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Library/View/SpectrumRow/Rename/SpectrumRowRenameViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Library/View/SpectrumRow/SpectrumRowInfoView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Library/View/SpectrumRow/SpectrumRowListView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Library/View/SpectrumRow/SpectrumRowView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Model/Spectrum.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Model/SpectrumAdditionalInfo.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Model/SpectrumData+AdditiveArithmetic.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Model/SpectrumData+Cesium.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Model/SpectrumData.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Model/SpectrumFolder.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Model/SpectrumRowData.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Model/XML/Spectrum+XML.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Model/XML/SpectrumXML+Import.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Model/XML/SpectrumXML.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Model/XML/XMLDecoder+Date.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Preview/SpectrumPreviewView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Preview/SpectrumPreviewViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Services/ActiveSpectrumProvider.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/SpectrumAnalyticsEvent.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/SpectrumGlobalOptions/SpectrumColor.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/SpectrumGlobalOptions/SpectrumFilter.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/SpectrumGlobalOptions/SpectrumGlobalOptions.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/SpectrumGlobalOptions/SpectrumOperation.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/SpectrumGlobalOptions/SpectrumOptionsProvider.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/SpectrumMainView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/SpectrumMainViewModel+Dependency.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/SpectrumMainViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Views/Chart/Model/SelectedSpectrum.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Views/Chart/Model/SpectrumChart.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Views/Chart/SpectrumChartView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Views/Chart/SpectrumChartViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Views/Chart/Subviews/SpectrumChartBackgroundInfo.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Views/Isotope/IsotopeToolBarItem.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Views/Isotope/IsotopeView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Views/Options/SpectrumOptions.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Views/Options/SpectrumOptionsAnalyticsEvent.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Views/Options/SpectrumOptionsView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Views/Options/SpectrumSliderView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Views/SaveSpectrum/SaveSpectrumView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Spectrum/Views/SaveSpectrum/SaveSpectrumViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/ActiveTrackViewModel+Dependency.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/ActiveTrackViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/Domain/Repository/TrackMarkerRepository.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/Domain/Repository/TrackPeriodRepository.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/Domain/Repository/TrackRepository.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/Domain/UseCases/ActiveTrackUseCaseProtocol.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/Domain/UseCases/Marker/TrackMarkerCreateUseCase.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/Domain/UseCases/Marker/TrackMarkerFetchUseCase.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/Domain/UseCases/Marker/TrackMarkerRemoveUseCase.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/Domain/UseCases/Marker/TrackMarkerUpdateUseCase.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/Domain/UseCases/Period/TrackPeriodCreateUseCase.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/Domain/UseCases/Period/TrackPeriodUpdateUseCase.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/Domain/UseCases/Track/TrackCreateUseCase.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/Domain/UseCases/Track/TrackGetUseCase.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/Domain/UseCases/Track/TrackImportUseCase.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/Domain/UseCases/Track/TrackMergeUseCase.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/Domain/UseCases/Track/TrackRemoveUseCase.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/Domain/UseCases/Track/TrackUpdateUseCase.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/List/TrackListAnalyticsEvent.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/List/TrackListView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/List/TrackListViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/Model/DTO/TrackDTO.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/Model/DTO/TrackMarkerDTO.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/Model/DTO/TrackPeriodDTO.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/Model/Track+Export.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/Model/Track.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/Model/TrackMarker.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/Model/TrackPeriod.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/Options/Model/TrackScreenOptions.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/Options/TrackOptionsAnalyticsEvent.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/Options/TrackRowView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/Options/TracksMainOptionsView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/Options/TracksMainOptionsViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/Preview/TrackPreviewAnalyticsEvent.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/Preview/TrackPreviewDeleting.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/Preview/TrackPreviewOptions.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/Preview/TrackPreviewView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/Preview/TrackPreviewViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/Services/TrackMarkerUpdater.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/TrackAnalyticsEvent.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/TrackView/MarkerInfo/TrackMarkerInfoView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/TrackView/MarkerInfo/TrackMarkerInfoViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/TrackView/TrackInfoView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/TrackView/TrackInfoViewModel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/TrackView/TrackMapView/GMSTrackMarker.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/TrackView/TrackMapView/MapViewCoordinator.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/TrackView/TrackMapView/TrackMapViewController.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/TrackView/TrackMapView/TrackMapViewControllerBridge.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/TrackView/TrackMapView/TrackMarkerImage.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/TrackView/TrackRenameView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/TrackView/TrackView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/TracksMainView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/Views/TrackInfoBlockView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Containers/Track/Views/TrackScreenNavigationView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Constants/RadColors+Color.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Constants/RadColors.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Dashboard/Buttons/BackButton.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Dashboard/Buttons/CloseButton.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Modifiers/ConditionModifier.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Modifiers/DisableOverlay.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Modifiers/DisguisableSearchBar.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Modifiers/ModalOverlay.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Modifiers/RoundedBackground.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Modifiers/RoundedBorder.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Modifiers/StickyFooterModifier.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Modifiers/UniversalSheet.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Style/Button/CircleButtonStyle.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Style/Button/ControlButtonStyle.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Style/Button/EmptyAnimationStyle.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Style/Button/FilterButtonStyle.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Style/Button/NavigationButtonStyle.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Style/Button/PillButtonStyle.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Style/Button/TableButtonStyle.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Style/Button/ToolBarButtonStyle.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Style/ColorToken.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Style/LiquidGlass/LiquidGlass+Image.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Style/LiquidGlass/LiquidGlass+Padding.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Style/LiquidGlass/LiquidGlass.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Style/LiquidGlass/LiquidModifier.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Style/Text/BadgeTextStyle.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Style/Text/TextStyle.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/BottomSheetView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/EmptyDataView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/EnergyKevLabelView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/FeatureLandingView/FeatureLandingImagePagerCardView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/FeatureLandingView/FeatureLandingView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/FeatureNotSupportedView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/FolderView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/Indicators/BatteryPercentageView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/Indicators/BluetoothSignalView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/Indicators/CubeTemperatureView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/InfoLabel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/LibraryMainContainerView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/LibraryRowSelectionImage.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/Line.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/ListTileView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/Loader/LoaderTextView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/Loader/LoaderView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/MovingRectangle.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/OptionsBaseView/OptionsCloseViewHeader.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/OptionsBaseView/OptionsSheetView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/OptionsPickerView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/RecordingImageView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/RenameRowTextField.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/RenameView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/SafariView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/ShareSheet.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/SpectrumChartPreview.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/SpectrumSelectionListView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/Temperature/CubeIcon.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/Temperature/Temperature.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/Temperature/TemperatureLabel.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/TextFieldView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/Toast/Toast.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/Toast/ToastManager.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/Toast/ToastModifier.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/Toast/ToastView.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/ToolBar/ToolbarModifier.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/ToolBar/ToolbarTitleItem.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/TransparentBackground.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Design System/Views/VStackList.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Navigation/AppRoute.swift
+/Users/mkozin/Developer/radiacode-kmp/iosApp/RadiaCode/Presentation/Navigation/NavigationManager.swift

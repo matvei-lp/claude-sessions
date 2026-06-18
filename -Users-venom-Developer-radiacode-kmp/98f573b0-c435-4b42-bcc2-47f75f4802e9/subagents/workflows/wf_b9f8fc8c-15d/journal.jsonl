@@ -1,0 +1,84 @@
+{"type":"started","key":"v2:4f3b4fe63413f8366c4173b6f53edfb7443a896926561f006d3163eaff2a272a","agentId":"a9dc00ede118c3a31"}
+{"type":"started","key":"v2:cedfb36b4344c454cf7e56f5c4ffebafaa85dafef6ed175d0996b53b8fe6cf48","agentId":"af12963421b8598a0"}
+{"type":"started","key":"v2:6ef69055d025a4b8ad69b64396fbcdbc0c92a4ace1ad9faf7c9d4a637e170dec","agentId":"a1cdb5ab0be820c9e"}
+{"type":"started","key":"v2:46a5d46c928d791faf52d8ffe311e35c4d8649b89d53ddffde1c942b1e698f6e","agentId":"a1c072d037e6acfa6"}
+{"type":"started","key":"v2:c2e9488371ae383b366b3776d9f6e1068c442f47ab18a3e66bf2da6093913914","agentId":"a8bf327cc8d280df7"}
+{"type":"started","key":"v2:65250f91228be51b42a22442bf4f7b550ef7ac1c4bf7dcd46d901d9d264d1b7d","agentId":"a15132c13d638c8c2"}
+{"type":"started","key":"v2:d9621b28ec805de9ca6bb6f01252d5ea8da527f148df9a5ff7c19f438c314488","agentId":"a30b4304d9d8ce5b8"}
+{"type":"started","key":"v2:51eaa644e655cf761d32d2de10ca221caaa658bed68aac4b05a1adf24f85b523","agentId":"a2022f1db9d14e248"}
+{"type":"started","key":"v2:5775964f65baf2bdf92b3a676fcbcd48a96020f2d25fa6e80ccf79cd64dc0f3c","agentId":"a116e0e9ae4ac07c7"}
+{"type":"started","key":"v2:bacec3694c3e13470cda5dbe734c1add58bdfa13634634f1bfc8209b90d1d0c7","agentId":"aeaa2841f4626fb6d"}
+{"type":"started","key":"v2:35b64efd9b5ff14c691a59dcfdd11390d3195ce734caad03cd5391c7dcb45d12","agentId":"a3db580b14cbc90ec"}
+{"type":"started","key":"v2:be79ca6d00a9836e26c0b0b5ab889f284265c7ece01e50ed833daf2bbe8cb8a5","agentId":"aab1dfcebc2ed2460"}
+{"type":"started","key":"v2:d3acd836ffec2287a59101adce0f4494fb011fae839b83264e42d240ef15f149","agentId":"a9741b1e9f1a2e5b6"}
+{"type":"started","key":"v2:695d67f5ae22db33cd0aa141d170102c58ee0f429d69985f870237b9cf261845","agentId":"abd6321780e9683d3"}
+{"type":"started","key":"v2:c1c42573fddd7c6a624cb4681f52272d1b2bd196e57b77462c3f53d4a28c2f36","agentId":"a3f925dcd7e37f1eb"}
+{"type":"started","key":"v2:781c806f3ecedccfc1d140172b31ddbbf1bb34d32cf318b450df95527e1c99e1","agentId":"ab5835cb812adb223"}
+{"type":"started","key":"v2:73b158cf2e16bcc59d439d90f875746186725f9e48b5e9b224ede106aec60b23","agentId":"a3f2736d1254ea5d4"}
+{"type":"result","key":"v2:6ef69055d025a4b8ad69b64396fbcdbc0c92a4ace1ad9faf7c9d4a637e170dec","agentId":"a1cdb5ab0be820c9e","result":{"title":"Sentry: гонка данных в track.markers"}}
+{"type":"started","key":"v2:dad48bb6a8aca04e778d24187e5d70d16e5edacf36a763632be3521f8b7215d4","agentId":"a8a64d5bdc56d95ec"}
+{"type":"result","key":"v2:bacec3694c3e13470cda5dbe734c1add58bdfa13634634f1bfc8209b90d1d0c7","agentId":"aeaa2841f4626fb6d","result":{"title":"Sentry: краш LocationManager на главном потоке"}}
+{"type":"result","key":"v2:46a5d46c928d791faf52d8ffe311e35c4d8649b89d53ddffde1c942b1e698f6e","agentId":"a1c072d037e6acfa6","result":{"title":"План миграции iOS на KMP"}}
+{"type":"started","key":"v2:67264f8d362d0f653df285a66dc8b42619a393f56308c93b09c114348aaba7a0","agentId":"a43133415f68ea073"}
+{"type":"started","key":"v2:b03f4283832721f1cb5bcf75fbbb7fd3379697c65ab510c7fb621a384ffa67af","agentId":"a755de303e444bd9a"}
+{"type":"result","key":"v2:be79ca6d00a9836e26c0b0b5ab889f284265c7ece01e50ed833daf2bbe8cb8a5","agentId":"aab1dfcebc2ed2460","result":{"title":"Уход от TaskQueue в DeviceTransmition"}}
+{"type":"started","key":"v2:e25a5ee97950fc962074fd3e72dc636fb4ccc0d61376c8716e3f7fe5df33845d","agentId":"a6c53297716e1aae3"}
+{"type":"result","key":"v2:4f3b4fe63413f8366c4173b6f53edfb7443a896926561f006d3163eaff2a272a","agentId":"a9dc00ede118c3a31","result":{"title":"RAD-1179 баг с графиком cps"}}
+{"type":"started","key":"v2:3a0c7a51005a922eaa3d2c311950b4ec30d604998b8deba82924d52a34b84784","agentId":"a3612712d96410f3a"}
+{"type":"result","key":"v2:35b64efd9b5ff14c691a59dcfdd11390d3195ce734caad03cd5391c7dcb45d12","agentId":"a3db580b14cbc90ec","result":{"title":"RAD-1185 Обновить прошивку Zero 4.16"}}
+{"type":"started","key":"v2:90a86c3543948204ab9b5ce4467531357050ebfdcdaad1596e05ac61ab9b7dfc","agentId":"a2ddff2d2750a86eb"}
+{"type":"result","key":"v2:781c806f3ecedccfc1d140172b31ddbbf1bb34d32cf318b450df95527e1c99e1","agentId":"ab5835cb812adb223","result":{"title":"Git-тег релиза 1.0.16(2)"}}
+{"type":"started","key":"v2:d6fb241a98c50d08c5f445c064a60be6c9722a18d81274a2c291eae312dbcb49","agentId":"a19587af4df590aee"}
+{"type":"result","key":"v2:c1c42573fddd7c6a624cb4681f52272d1b2bd196e57b77462c3f53d4a28c2f36","agentId":"a3f925dcd7e37f1eb","result":{"title":"Иерархия задач переезда на KMP"}}
+{"type":"started","key":"v2:9dc29f13dac652155cdcae4fd5e1d424ba554b22b5cb08c3132da376a1936acf","agentId":"ad9caf8a2baa8ffc8"}
+{"type":"result","key":"v2:cedfb36b4344c454cf7e56f5c4ffebafaa85dafef6ed175d0996b53b8fe6cf48","agentId":"af12963421b8598a0","result":{"title":"Кастомный попап на iPad"}}
+{"type":"started","key":"v2:3285a6c504355f468034fa0cd8f08f49c657e77cf591fb897cacfdb9de78921b","agentId":"a55d1c8c7ad38f051"}
+{"type":"result","key":"v2:695d67f5ae22db33cd0aa141d170102c58ee0f429d69985f870237b9cf261845","agentId":"abd6321780e9683d3","result":{"title":"Протокол прибора в контексте Claude"}}
+{"type":"started","key":"v2:cce2ea6bc5d5b58b34dc4b57e4df4e2496018bf8fa459044d1c997e47e55a6e8","agentId":"af3a6030484be926a"}
+{"type":"result","key":"v2:51eaa644e655cf761d32d2de10ca221caaa658bed68aac4b05a1adf24f85b523","agentId":"a2022f1db9d14e248","result":{"title":"Sentry: краш Live Activity и зависание графиков"}}
+{"type":"started","key":"v2:b4f7406ad5a39ab23b7e0e933f54a15dc9d3f1bbf9c4ddfae26f86c1abc512dd","agentId":"ab573c1f71f26e706"}
+{"type":"result","key":"v2:65250f91228be51b42a22442bf4f7b550ef7ac1c4bf7dcd46d901d9d264d1b7d","agentId":"a15132c13d638c8c2","result":{"title":"Объединение DeviceContainer и DeviceManager"}}
+{"type":"started","key":"v2:f01ff37ae8c46da411641980a153f0c7ef1600bba8b6da7e0dcfe07ea4fcf096","agentId":"ab313e5e7e036cca3"}
+{"type":"result","key":"v2:c2e9488371ae383b366b3776d9f6e1068c442f47ab18a3e66bf2da6093913914","agentId":"a8bf327cc8d280df7","result":{"title":"DC-15 множитель порогов DS_AlarmVsfrMul"}}
+{"type":"started","key":"v2:6c2a3b9d7487e4a8fd26967dc4b899b1dc03db120a189adadbf9bd32cea3e754","agentId":"a9cb678b86dfb0857"}
+{"type":"result","key":"v2:5775964f65baf2bdf92b3a676fcbcd48a96020f2d25fa6e80ccf79cd64dc0f3c","agentId":"a116e0e9ae4ac07c7","result":{"title":"Сущность RadiationMeasurement для единиц"}}
+{"type":"started","key":"v2:0b90aaac1bf3daf79b1878772b83402bf8d422b4fa488fba7d76350a7ce35d3d","agentId":"ae340a10e5c721b9e"}
+{"type":"result","key":"v2:d3acd836ffec2287a59101adce0f4494fb011fae839b83264e42d240ef15f149","agentId":"a9741b1e9f1a2e5b6","result":{"title":"RAD-1176 краш в подписках устройства"}}
+{"type":"started","key":"v2:22e3c4b762df5f45252f3b2ea2300a65b0f1cf5591e4dc9037b94f6af56d66ab","agentId":"af5f4fe5209773ef4"}
+{"type":"result","key":"v2:d9621b28ec805de9ca6bb6f01252d5ea8da527f148df9a5ff7c19f438c314488","agentId":"a30b4304d9d8ce5b8","result":{"title":"Удаление sharedUI и пересоздание проекта в git"}}
+{"type":"started","key":"v2:490a96c5685817aa7242f67a39ea83cf284241b6fcb97352497feff06231982e","agentId":"aacd7932bc789adf9"}
+{"type":"result","key":"v2:73b158cf2e16bcc59d439d90f875746186725f9e48b5e9b224ede106aec60b23","agentId":"a3f2736d1254ea5d4","result":{"title":"Sentry: зависание легенды графика"}}
+{"type":"started","key":"v2:64c364bfd9f83ba4f5766d291248fd772f433b17bfd5880d38553d488f3c2029","agentId":"a7588263421d0fc69"}
+{"type":"result","key":"v2:3a0c7a51005a922eaa3d2c311950b4ec30d604998b8deba82924d52a34b84784","agentId":"a3612712d96410f3a","result":{"title":"Закрытая группа тестирования в TestFlight"}}
+{"type":"started","key":"v2:2c8d46011758fd269b4a9c47055e3082fac25d2db459c17ac8188d1b78fc2783","agentId":"a0195aed0894f87d1"}
+{"type":"result","key":"v2:dad48bb6a8aca04e778d24187e5d70d16e5edacf36a763632be3521f8b7215d4","agentId":"a8a64d5bdc56d95ec","result":{"title":"Сортировка Device List по сигналу"}}
+{"type":"started","key":"v2:ee7ab83a452d9ae9c96dc3954d3c3c3f34848f882b8221090fb25fb0c56af87b","agentId":"af2fd0489fbc0f9d4"}
+{"type":"result","key":"v2:b03f4283832721f1cb5bcf75fbbb7fd3379697c65ab510c7fb621a384ffa67af","agentId":"a755de303e444bd9a","result":{"title":"Дебаг переподключения BLE RC-102"}}
+{"type":"started","key":"v2:54f66050e1d063e72e1820f54f0d5f0ca7529448fd8f7c929081deaefd1c0c56","agentId":"a166e6f77fd448d5e"}
+{"type":"result","key":"v2:67264f8d362d0f653df285a66dc8b42619a393f56308c93b09c114348aaba7a0","agentId":"a43133415f68ea073","result":{"title":"Sentry: зависание LocationManager.init"}}
+{"type":"started","key":"v2:00fb7f77ef5004be22ddcf60d09751872d230cbe3d6010eb8e73927eddd1174a","agentId":"a43e8ef16fb95c90d"}
+{"type":"result","key":"v2:e25a5ee97950fc962074fd3e72dc636fb4ccc0d61376c8716e3f7fe5df33845d","agentId":"a6c53297716e1aae3","result":{"title":"Sentry: data race в TrackMarker"}}
+{"type":"started","key":"v2:0eff1d1f80ab0dba7b7b14bf2468f86217eb008cb68f152fbee93d5746fa93b4","agentId":"a72dc087e82117dff"}
+{"type":"result","key":"v2:b4f7406ad5a39ab23b7e0e933f54a15dc9d3f1bbf9c4ddfae26f86c1abc512dd","agentId":"ab573c1f71f26e706","result":{"title":"RMP-55 фейковый экран подключения устройства"}}
+{"type":"started","key":"v2:11d2fc93d190f971ce8e370e35b2cc3f42c3260edef697a2d11a0fe3d11756d8","agentId":"a7f2397e63dee5212"}
+{"type":"result","key":"v2:3285a6c504355f468034fa0cd8f08f49c657e77cf591fb897cacfdb9de78921b","agentId":"a55d1c8c7ad38f051","result":{"title":"RMP-21 единый Makefile для проекта"}}
+{"type":"started","key":"v2:051e3fc3d6dff18f4cc04d2da77e170731c2b26743f39fe1cf6ad50dbf0df6d2","agentId":"a14e8d667c17433a3"}
+{"type":"result","key":"v2:90a86c3543948204ab9b5ce4467531357050ebfdcdaad1596e05ac61ab9b7dfc","agentId":"a2ddff2d2750a86eb","result":{"title":"Доступ к GitHub-репозиторию и чистка Keychain"}}
+{"type":"started","key":"v2:eb1cdab908bccc5fb4d5be2d0af652f04de3a0279a86bfdb268a288e552c6b6f","agentId":"a81a561e8337b71be"}
+{"type":"result","key":"v2:cce2ea6bc5d5b58b34dc4b57e4df4e2496018bf8fa459044d1c997e47e55a6e8","agentId":"af3a6030484be926a","result":{"title":"Перенос radiacode-ios в KMP-монорепо"}}
+{"type":"result","key":"v2:d6fb241a98c50d08c5f445c064a60be6c9722a18d81274a2c291eae312dbcb49","agentId":"a19587af4df590aee","result":{"title":"Web Bluetooth: поиск RadiaCode и спектр"}}
+{"type":"result","key":"v2:9dc29f13dac652155cdcae4fd5e1d424ba554b22b5cb08c3132da376a1936acf","agentId":"ad9caf8a2baa8ffc8","result":{"title":"Вылет при запуске из-за большого бэкапа"}}
+{"type":"result","key":"v2:f01ff37ae8c46da411641980a153f0c7ef1600bba8b6da7e0dcfe07ea4fcf096","agentId":"ab313e5e7e036cca3","result":{"title":"Вынос превью-классов Theme в debug"}}
+{"type":"result","key":"v2:6c2a3b9d7487e4a8fd26967dc4b899b1dc03db120a189adadbf9bd32cea3e754","agentId":"a9cb678b86dfb0857","result":{"title":"RMP-35 настройка .gitignore"}}
+{"type":"result","key":"v2:0b90aaac1bf3daf79b1878772b83402bf8d422b4fa488fba7d76350a7ce35d3d","agentId":"ae340a10e5c721b9e","result":{"title":"RMP-6 BLE-протокол в shared KMP"}}
+{"type":"result","key":"v2:22e3c4b762df5f45252f3b2ea2300a65b0f1cf5591e4dc9037b94f6af56d66ab","agentId":"af5f4fe5209773ef4","result":{"title":"RMP-25 DeviceConnectionManager подключение прибора"}}
+{"type":"result","key":"v2:2c8d46011758fd269b4a9c47055e3082fac25d2db459c17ac8188d1b78fc2783","agentId":"a0195aed0894f87d1","result":{"title":"Исправление Typography.bodyExtraSmall TextStyle"}}
+{"type":"result","key":"v2:490a96c5685817aa7242f67a39ea83cf284241b6fcb97352497feff06231982e","agentId":"aacd7932bc789adf9","result":{"title":"Перенос локализации iOS в KMP"}}
+{"type":"result","key":"v2:64c364bfd9f83ba4f5766d291248fd772f433b17bfd5880d38553d488f3c2029","agentId":"a7588263421d0fc69","result":{"title":"RMP-30 разбор PR и рефакторинг Bluetooth"}}
+{"type":"result","key":"v2:0eff1d1f80ab0dba7b7b14bf2468f86217eb008cb68f152fbee93d5746fa93b4","agentId":"a72dc087e82117dff","result":{"title":"Sentry: разбор issue 7543391103"}}
+{"type":"result","key":"v2:11d2fc93d190f971ce8e370e35b2cc3f42c3260edef697a2d11a0fe3d11756d8","agentId":"a7f2397e63dee5212","result":{"title":"Объединение DeviceView и ConnectionDeviceView"}}
+{"type":"result","key":"v2:00fb7f77ef5004be22ddcf60d09751872d230cbe3d6010eb8e73927eddd1174a","agentId":"a43e8ef16fb95c90d","result":{"title":"RMP-51 ревью типографики PR #17"}}
+{"type":"result","key":"v2:ee7ab83a452d9ae9c96dc3954d3c3c3f34848f882b8221090fb25fb0c56af87b","agentId":"af2fd0489fbc0f9d4","result":{"title":"Разбор функции scan() BLE-сканирования"}}
+{"type":"result","key":"v2:54f66050e1d063e72e1820f54f0d5f0ca7529448fd8f7c929081deaefd1c0c56","agentId":"a166e6f77fd448d5e","result":{"title":"Разбор scan() во вьюмодели выбора устройства"}}
+{"type":"result","key":"v2:eb1cdab908bccc5fb4d5be2d0af652f04de3a0279a86bfdb268a288e552c6b6f","agentId":"a81a561e8337b71be","result":{"title":"RMP-23 BluetoothManager: поиск и выдача"}}
+{"type":"result","key":"v2:051e3fc3d6dff18f4cc04d2da77e170731c2b26743f39fe1cf6ad50dbf0df6d2","agentId":"a14e8d667c17433a3","result":{"title":"Кнопка Run неактивна в Android Studio"}}

@@ -1,0 +1,661 @@
+diff --git a/RadiaCode/Presentation/Containers/Dose/Domain/DoseCounterRepository.swift b/RadiaCode/Presentation/Containers/Dose/Domain/DoseCounterRepository.swift
+index 29c1b6f..d15e427 100644
+--- a/RadiaCode/Presentation/Containers/Dose/Domain/DoseCounterRepository.swift
++++ b/RadiaCode/Presentation/Containers/Dose/Domain/DoseCounterRepository.swift
+@@ -58,7 +58,7 @@ actor DoseCounterRepositoryImpl: DoseCounterRepository {
+                 deviceId: deviceId,
+                 date: doseCounter.date,
+                 value: doseCounter.value,
+-                backgroundDose: doseCounter.backgroundDose
++                backgroundDose: Double(doseCounter.backgroundDose)
+             )
+             context.insert(doseCounterObject)
+             try? context.save()
+diff --git a/RadiaCode/Presentation/Containers/Dose/Domain/DoseCounterSaveUseCase.swift b/RadiaCode/Presentation/Containers/Dose/Domain/DoseCounterSaveUseCase.swift
+index 2b99035..b155158 100644
+--- a/RadiaCode/Presentation/Containers/Dose/Domain/DoseCounterSaveUseCase.swift
++++ b/RadiaCode/Presentation/Containers/Dose/Domain/DoseCounterSaveUseCase.swift
+@@ -10,7 +10,7 @@ import FactoryKit
+ 
+ protocol DoseCounterSaveUseCase {
+     
+-    func save(counterBatch: CounterBatch, backgroundDose: Double) async -> DoseCounter
++    func save(counterBatch: CounterBatch, backgroundDose: Float) async -> DoseCounter
+ }
+ 
+ final class DoseCounterSaveUseCaseImpl: DoseCounterSaveUseCase {
+@@ -23,7 +23,7 @@ final class DoseCounterSaveUseCaseImpl: DoseCounterSaveUseCase {
+         self.deviceId = deviceId
+     }
+ 
+-    func save(counterBatch: CounterBatch, backgroundDose: Double) async -> DoseCounter {
++    func save(counterBatch: CounterBatch, backgroundDose: Float) async -> DoseCounter {
+         let doseCounter = DoseCounter(
+             id: UUID().uuidString,
+             date: Date(timeIntervalSince1970: counterBatch.time),
+diff --git a/RadiaCode/Presentation/Containers/Dose/DoseChartView/DoseChartViewModel.swift b/RadiaCode/Presentation/Containers/Dose/DoseChartView/DoseChartViewModel.swift
+index 9c76236..6c3a276 100644
+--- a/RadiaCode/Presentation/Containers/Dose/DoseChartView/DoseChartViewModel.swift
++++ b/RadiaCode/Presentation/Containers/Dose/DoseChartView/DoseChartViewModel.swift
+@@ -29,7 +29,7 @@ final class DoseChartViewModel {
+         }
+     }
+     
+-    private(set) var maxY: Double = 1
++    private(set) var maxY: Float = 1
+     
+     var selectedBar: DoseBar? = nil {
+         didSet {
+@@ -39,11 +39,11 @@ final class DoseChartViewModel {
+         }
+     }
+         
+-    var referenceValue: Double = 0.0
++    var referenceValue: Float = 0.0
+     var isScrolling: Bool = false
+     
+-    private(set) var totalDose: Decimal?
+-    private(set) var averageDose: Decimal?
++    private(set) var totalDose: Float?
++    private(set) var averageDose: Float?
+     private(set) var timeInterval: String = ""
+     
+     var doseSettings: DoseSettings
+@@ -135,7 +135,7 @@ final class DoseChartViewModel {
+        }
+     
+     private func updateDoseInfo() {
+-        let totalDose: Double
++        let totalDose: Float
+         let start: Date
+         let end: Date
+         let interval: String
+@@ -188,8 +188,8 @@ final class DoseChartViewModel {
+         }
+         
+         let hours = start.hours(to: end)
+-        self.totalDose = Decimal(totalDose)
+-        self.averageDose = Decimal(totalDose / hours)
++        self.totalDose = totalDose
++        self.averageDose = totalDose / Float(hours)
+         self.timeInterval = interval
+     }
+         
+diff --git a/RadiaCode/Presentation/Containers/Dose/DoseChartView/Model/DoseBar.swift b/RadiaCode/Presentation/Containers/Dose/DoseChartView/Model/DoseBar.swift
+index 418c19a..300dcc0 100644
+--- a/RadiaCode/Presentation/Containers/Dose/DoseChartView/Model/DoseBar.swift
++++ b/RadiaCode/Presentation/Containers/Dose/DoseChartView/Model/DoseBar.swift
+@@ -14,10 +14,10 @@ final class DoseBar: Identifiable, Equatable {
+     let dateInterval: DateInterval
+     
+     /// Значение основного бара, которое реально отображается на графике
+-    var displayedDose: Double = 0.0
++    var displayedDose: Float = 0.0
+     
+     /// Полный бар без учета excluded, для полупрозрачного фона
+-    var fullBarDose: Double = 0.0
++    var fullBarDose: Float = 0.0
+     
+     /// true, если в баре есть сэмплы, но все они выключены
+     var isExcluded = false
+diff --git a/RadiaCode/Presentation/Containers/Dose/DoseChartView/Model/DosePage.swift b/RadiaCode/Presentation/Containers/Dose/DoseChartView/Model/DosePage.swift
+index cba4df8..8faeb46 100644
+--- a/RadiaCode/Presentation/Containers/Dose/DoseChartView/Model/DosePage.swift
++++ b/RadiaCode/Presentation/Containers/Dose/DoseChartView/Model/DosePage.swift
+@@ -12,7 +12,7 @@ final class DosePage: Identifiable {
+     
+     let id: Int
+     let bars: [DoseBar]
+-    var totalDisplayedDose: Decimal = 0
++    var totalDisplayedDose: Float = 0
+ 
+     init(id: Int, bars: [DoseBar]) {
+         self.id = id
+@@ -20,7 +20,7 @@ final class DosePage: Identifiable {
+     }
+     
+     func recalculateDisplayedDose() {
+-        let newValue = Decimal(bars.reduce(0.0) { $0 + $1.displayedDose })
++        let newValue = bars.reduce(0.0) { $0 + $1.displayedDose }
+         guard newValue != totalDisplayedDose else { return }
+         Task { @MainActor in
+             self.totalDisplayedDose = newValue
+diff --git a/RadiaCode/Presentation/Containers/Dose/DoseChartView/Options/DoseOptionsView.swift b/RadiaCode/Presentation/Containers/Dose/DoseChartView/Options/DoseOptionsView.swift
+index 86608e6..b27af49 100644
+--- a/RadiaCode/Presentation/Containers/Dose/DoseChartView/Options/DoseOptionsView.swift
++++ b/RadiaCode/Presentation/Containers/Dose/DoseChartView/Options/DoseOptionsView.swift
+@@ -68,11 +68,7 @@ struct DoseOptionsView: View {
+                                     .padding(.horizontal, 4)
+                                 }
+                                 
+-                                HStack(alignment: .lastTextBaseline, spacing: 0) {
+-                                    RadiationDoseValueLabelView(value: doseSettings.backgroundLevel.value)
+-                                    Text(verbatim: "/")
+-                                    Text(.Dose.h)
+-                                }
++                                DoseRateLabelView(value: doseSettings.backgroundLevel.value.floatValue)
+                             }
+                             .font(.system(size: 15))
+                             .foregroundStyle(doseSettings.backgroundLevel.isAuto ? .accentYellow : .textSecondary)
+@@ -113,13 +109,13 @@ struct DoseOptionsView: View {
+                 presentedSheet = .annualReferenceLevel
+             } content: {
+                 VStackList {
+-                    DoseRowButton(title: .Dose.bgSubtracted, value: doseSettings.annualBackgroundSubstractValue) {
++                    DoseRowButton(title: .Dose.bgSubtracted, value: doseSettings.annualBackgroundSubstractValue.floatValue) {
+                         doseAnnualReferenceLevel = .substract
+                     }
+                     
+                     Divider()
+ 
+-                    DoseRowButton(title: .Dose.bgIncluded, value: doseSettings.annualBackgroundIncludeValue) {
++                    DoseRowButton(title: .Dose.bgIncluded, value: doseSettings.annualBackgroundIncludeValue.floatValue) {
+                         doseAnnualReferenceLevel = .include
+                     }
+                 }
+diff --git a/RadiaCode/Presentation/Containers/Dose/DoseChartView/Options/Views/DoseRowButton.swift b/RadiaCode/Presentation/Containers/Dose/DoseChartView/Options/Views/DoseRowButton.swift
+index eed876f..0561d4c 100644
+--- a/RadiaCode/Presentation/Containers/Dose/DoseChartView/Options/Views/DoseRowButton.swift
++++ b/RadiaCode/Presentation/Containers/Dose/DoseChartView/Options/Views/DoseRowButton.swift
+@@ -9,7 +9,7 @@ import SwiftUI
+ 
+ struct DoseRowButton: View {
+     let title: LocalizedStringResource
+-    let value: Decimal
++    let value: Float
+     let action: () -> Void
+     
+     var body: some View {
+@@ -19,7 +19,7 @@ struct DoseRowButton: View {
+                     .fixedSize(horizontal: true, vertical: false)
+             } icon: {
+                 HStack(spacing: 4) {
+-                    RadiationDoseValueLabelView(value: value)
++                    DoseLabelView(value: value)
+                     Image(systemName: "chevron.right")
+                         .padding(.leading, 6)
+                 }
+diff --git a/RadiaCode/Presentation/Containers/Dose/DoseChartView/Views/DoseChartHeaderView.swift b/RadiaCode/Presentation/Containers/Dose/DoseChartView/Views/DoseChartHeaderView.swift
+index 68bf4cc..dec3639 100644
+--- a/RadiaCode/Presentation/Containers/Dose/DoseChartView/Views/DoseChartHeaderView.swift
++++ b/RadiaCode/Presentation/Containers/Dose/DoseChartView/Views/DoseChartHeaderView.swift
+@@ -9,8 +9,8 @@ import SwiftUI
+ 
+ struct DoseChartHeaderView: View {
+     
+-    var totalDose: Decimal?
+-    var averageDose: Decimal?
++    var totalDose: Float?
++    var averageDose: Float?
+     var timeInterval: String
+     var backgroundHandling: DoseSettings.BackgroundHandling
+     
+@@ -30,12 +30,10 @@ struct DoseChartHeaderView: View {
+                                 .textStyle(.badge)
+                         }
+                     }
+-                    RadiationDoseValueLabelView(
+-                        value: totalDose,
+-                        valueFont: .system(size: 34, weight: .bold, design: .rounded),
+-                        unitFont: .system(size: 17, weight: .semibold)
+-                    )
+-                    .foregroundStyle(.textPrimary)
++                    DoseLabelView(value: totalDose)
++                        .radiationValueFont(.system(size: 34, weight: .bold, design: .rounded))
++                        .radiationUnitFont(.system(size: 17, weight: .semibold))
++                        .foregroundStyle(.textPrimary)
+                 }
+                 Spacer()
+                 VStack(alignment: .leading, spacing: 0) {
+@@ -44,15 +42,11 @@ struct DoseChartHeaderView: View {
+                         .foregroundStyle(.textSecondary)
+                     
+                     HStack(alignment: .lastTextBaseline, spacing: 0) {
+-                        RadiationDoseValueLabelView(
+-                            value: averageDose,
+-                            valueFont: .system(size: 34, weight: .bold, design: .rounded),
+-                        )
+-                        Text(verbatim: "/")
+-                        Text(.Dose.h)
++                        DoseRateLabelView(value: averageDose)
++                            .radiationValueFont(.system(size: 34, weight: .bold, design: .rounded))
++                            .radiationUnitFont(.system(size: 17, weight: .semibold))
++                            .foregroundStyle(.textPrimary)
+                     }
+-                    .font(.system(size: 17, weight: .semibold))
+-                    .foregroundStyle(.textPrimary)
+                 }
+                 Spacer()
+             }
+diff --git a/RadiaCode/Presentation/Containers/Dose/DoseChartView/Views/DoseChartPageView.swift b/RadiaCode/Presentation/Containers/Dose/DoseChartView/Views/DoseChartPageView.swift
+index d2e157c..fc3c1eb 100644
+--- a/RadiaCode/Presentation/Containers/Dose/DoseChartView/Views/DoseChartPageView.swift
++++ b/RadiaCode/Presentation/Containers/Dose/DoseChartView/Views/DoseChartPageView.swift
+@@ -99,7 +99,7 @@ struct DoseChartPageView: View {
+         }
+     }
+     
+-    private func barMark(index: Int, value: Double, opacity: Double) -> some ChartContent {
++    private func barMark(index: Int, value: Float, opacity: Double) -> some ChartContent {
+         BarMark(
+             x: .value(.Keys.xValue, Double(index) + 0.5),
+             yStart: .value(.Keys.minValue, 0),
+@@ -110,7 +110,7 @@ struct DoseChartPageView: View {
+         .cornerRadius(2)
+     }
+     
+-    private func color(value: Double) -> LinearGradient {
++    private func color(value: Float) -> LinearGradient {
+         let mainColor: Color = value > viewModel.referenceValue ? .accentYellow : .accentGreen
+         return .linearGradient(
+             Gradient(colors: [mainColor, mainColor.opacity(0.0)]),
+diff --git a/RadiaCode/Presentation/Containers/Dose/DoseChartView/Views/DoseChartYAxis.swift b/RadiaCode/Presentation/Containers/Dose/DoseChartView/Views/DoseChartYAxis.swift
+index 18bb66d..51d0755 100644
+--- a/RadiaCode/Presentation/Containers/Dose/DoseChartView/Views/DoseChartYAxis.swift
++++ b/RadiaCode/Presentation/Containers/Dose/DoseChartView/Views/DoseChartYAxis.swift
+@@ -20,10 +20,7 @@ struct DoseChartYAxis: View {
+                     .annotation(position: .leading) {
+                         VStack(alignment: .leading, spacing: 0) {
+                             Text(.Dose.refLvl)
+-                            HStack(spacing: 2) {
+-                                Text(refValue.formattedValue)
+-                                Text(.Localization.μSv)
+-                            }
++                            DoseLabelView(value: refValue)
+                         }
+                         .padding(.vertical, 4)
+                         .padding(.horizontal, 6)
+@@ -39,12 +36,9 @@ struct DoseChartYAxis: View {
+         .chartYScale(domain: 0 ... viewModel.maxY)
+         .chartYAxis {
+             AxisMarks(preset: .aligned, position: .leading) {
+-                if let value = $0.as(Double.self) {
++                if let value = $0.as(Float.self) {
+                     AxisValueLabel {
+-                        HStack(spacing: 2) {
+-                            Text(verbatim: value.formattedValue)
+-                            Text(.Localization.μSv)
+-                        }
++                        DoseLabelView(value: value)
+                     }
+                 }
+             }
+@@ -61,7 +55,7 @@ struct DoseChartYAxis: View {
+         }
+     }
+ }
+-//
+-//#Preview {
+-//    DoseChartYAxis(viewModel: .init())
+-//}
++
++#Preview {
++    DoseChartYAxis(viewModel: .init(doseSettings: .mock))
++}
+diff --git a/RadiaCode/Presentation/Containers/Dose/DoseWidgets/BaseDoseWidget.swift b/RadiaCode/Presentation/Containers/Dose/DoseWidgets/BaseDoseWidget.swift
+index 115fc26..c4bebc5 100644
+--- a/RadiaCode/Presentation/Containers/Dose/DoseWidgets/BaseDoseWidget.swift
++++ b/RadiaCode/Presentation/Containers/Dose/DoseWidgets/BaseDoseWidget.swift
+@@ -14,8 +14,8 @@ struct BaseDoseWidget: View {
+     }
+     
+     let title: LocalizedStringResource
+-    let value: Decimal?
+-    let alarmLevel: Decimal?
++    let value: Float?
++    let alarmLevel: Float?
+     let badge: LocalizedStringResource?
+     let percentInfo: LocalizedStringResource
+     let level: SignalizationAlarmLevel?
+@@ -23,13 +23,13 @@ struct BaseDoseWidget: View {
+     let infoClick: () -> Void
+     let resetClick: () -> Void
+     
+-    private let percent: Decimal?
++    private let percent: Float?
+     private let color: Color
+        
+        init(
+            title: LocalizedStringResource,
+-           value: Decimal?,
+-           alarmLevel: Decimal?,
++           value: Float?,
++           alarmLevel: Float?,
+            badge: LocalizedStringResource?,
+            percentInfo: LocalizedStringResource,
+            level: SignalizationAlarmLevel?,
+@@ -47,7 +47,7 @@ struct BaseDoseWidget: View {
+            self.infoClick = infoClick
+            self.resetClick = resetClick
+            
+-           let percent: Decimal? = {
++           let percent: Float? = {
+                guard let value, let alarmLevel, alarmLevel > 0 else { return nil }
+                return (value / alarmLevel) * 100
+            }()
+@@ -89,12 +89,10 @@ struct BaseDoseWidget: View {
+                     .padding(.bottom, 14)
+                 
+                 HStack(spacing: 8) {
+-                    RadiationDoseValueLabelView(
+-                        value: value,
+-                        valueFont: .system(size: 22, weight: .bold, design: .rounded),
+-                        unitFont: .system(size: 13, weight: .semibold)
+-                    )
+-                    .animation(.smooth(duration: 0.25), value: value)
++                    DoseLabelView(value: value)
++                        .radiationUnitFont(.system(size: 13, weight: .semibold))
++                        .radiationValueFont(.system(size: 22, weight: .bold, design: .rounded))
++                        .animation(.smooth(duration: 0.25), value: value)
+                     
+                     if let badge {
+                         Text(badge)
+@@ -104,7 +102,7 @@ struct BaseDoseWidget: View {
+                     
+                     Spacer()
+                     if let alarmLevel {
+-                        RadiationDoseValueLabelView(value: alarmLevel)
++                        DoseLabelView(value: alarmLevel)
+                             .font(.system(size: 13))
+                             .foregroundStyle(.textSecondary)
+                             .animation(.smooth(duration: 0.25), value: alarmLevel)
+@@ -112,12 +110,12 @@ struct BaseDoseWidget: View {
+                 }
+                 .padding(.bottom, 8)
+                 
+-                CapsuleProgressBar(percent: percent?.floatValue, color: color)
++                CapsuleProgressBar(percent: percent, color: color)
+                     .padding(.bottom, 10)
+                 
+                 HStack(spacing: 4) {
+                     if let percent {
+-                        Text(verbatim: "\(Int(percent.floatValue))%")
++                        Text(verbatim: "\(Int(percent))%")
+                             .foregroundStyle(color)
+                     } else {
+                         Text(verbatim: "--%")
+diff --git a/RadiaCode/Presentation/Containers/Dose/DoseWidgets/DeviceDose/DeviceDoseWidgetViewModel.swift b/RadiaCode/Presentation/Containers/Dose/DoseWidgets/DeviceDose/DeviceDoseWidgetViewModel.swift
+index 20ca5a6..5bc00ed 100644
+--- a/RadiaCode/Presentation/Containers/Dose/DoseWidgets/DeviceDose/DeviceDoseWidgetViewModel.swift
++++ b/RadiaCode/Presentation/Containers/Dose/DoseWidgets/DeviceDose/DeviceDoseWidgetViewModel.swift
+@@ -29,11 +29,11 @@ final class DeviceDoseWidgetViewModel {
+     @ObservationIgnored
+     @Injected(\.deviceConnectionManager) private var deviceConnectionManager
+ 
+-    var doseValue: Decimal?
+-    var alarmLevelValue: Decimal?
++    var doseValue: Float?
++    var alarmLevelValue: Float?
+     var level: SignalizationAlarmLevel = .normal
+     
+-    var percent: Decimal?
++    var percent: Float?
+     var percentOfLevel: LocalizedStringResource = .Dose.lvl
+     
+     var time: String = "--:--:--"
+@@ -106,26 +106,24 @@ final class DeviceDoseWidgetViewModel {
+         }
+ 
+         let doseValue = dose.value * 10000
+-        let decimalDose = Decimal(Double(doseValue))
+-
+-        self.doseValue = decimalDose
++        self.doseValue = doseValue
+         
+         let level = doseAlarms.checkValue(doseValue)
+         
+-        let levelValue: (value: Decimal?, label: LocalizedStringResource) = {
++        let levelValue: (value: Float?, label: LocalizedStringResource) = {
+             switch level {
+             case .normal:
+-                (doseAlarms.level1, .Dose.lvl1)
++                (doseAlarms.level1?.floatValue, .Dose.lvl1)
+             case .level1:
+-                (doseAlarms.level2, .Dose.lvl2)
++                (doseAlarms.level2?.floatValue, .Dose.lvl2)
+             case .level2, .offScale:
+-                (doseAlarms.offScale, .Dose.offScale)
++                (doseAlarms.offScale?.floatValue, .Dose.offScale)
+             }
+         }()
+         
+         if let value = levelValue.value {
+             self.alarmLevelValue = levelValue.value
+-            self.percent = (decimalDose / value) * 100
++            self.percent = (doseValue / value) * 100
+         }
+         
+         self.level = level
+diff --git a/RadiaCode/Presentation/Containers/Dose/DoseWidgets/PersonalDose/PersonalDoseWidgetView.swift b/RadiaCode/Presentation/Containers/Dose/DoseWidgets/PersonalDose/PersonalDoseWidgetView.swift
+index 2fc0059..71724ae 100644
+--- a/RadiaCode/Presentation/Containers/Dose/DoseWidgets/PersonalDose/PersonalDoseWidgetView.swift
++++ b/RadiaCode/Presentation/Containers/Dose/DoseWidgets/PersonalDose/PersonalDoseWidgetView.swift
+@@ -18,7 +18,7 @@ struct PersonalDoseWidgetView: View {
+         BaseDoseWidget(
+             title: .Dose.personalDose,
+             value: viewModel.doseBarViewModel.pageBars.first?.totalDisplayedDose,
+-            alarmLevel: Decimal(viewModel.doseSettings.personalDoseReferenceValue),
++            alarmLevel: viewModel.doseSettings.personalDoseReferenceValue,
+             badge: viewModel.doseSettings.backgroundHandling == .substract ? .Dose.bgSub : nil,
+             percentInfo: .Dose.ofRefLvl(String(localized: viewModel.doseBarViewModel.doseRange.info)),
+             level: nil,
+diff --git a/RadiaCode/Presentation/Containers/Dose/Model/DoseCounter.swift b/RadiaCode/Presentation/Containers/Dose/Model/DoseCounter.swift
+index 7f5963d..c6178aa 100644
+--- a/RadiaCode/Presentation/Containers/Dose/Model/DoseCounter.swift
++++ b/RadiaCode/Presentation/Containers/Dose/Model/DoseCounter.swift
+@@ -11,5 +11,5 @@ struct DoseCounter: Sendable {
+     let id: String
+     let date: Date
+     let value: UInt32
+-    let backgroundDose: Double
++    let backgroundDose: Float
+ }
+diff --git a/RadiaCode/Presentation/Containers/Dose/Model/DoseSettings/DoseSettings.swift b/RadiaCode/Presentation/Containers/Dose/Model/DoseSettings/DoseSettings.swift
+index 1032d89..38ae18f 100644
+--- a/RadiaCode/Presentation/Containers/Dose/Model/DoseSettings/DoseSettings.swift
++++ b/RadiaCode/Presentation/Containers/Dose/Model/DoseSettings/DoseSettings.swift
+@@ -22,12 +22,12 @@ final class DoseSettings: Codable {
+     var annualBackgroundIncludeValue: Decimal
+     
+     @ObservationIgnored
+-    var personalDoseReferenceValue: Double {
++    var personalDoseReferenceValue: Float {
+         annualValue / personalDoseRange.rangeReferenceInterval
+     }
+     
+     @ObservationIgnored
+-    var historyDoseReferenceValue: Double {
++    var historyDoseReferenceValue: Float {
+         annualValue / historyDoseRange.barReferenceInterval
+     }
+ 
+@@ -47,12 +47,12 @@ final class DoseSettings: Codable {
+         self.annualBackgroundIncludeValue = annualBackgroundIncludeValue
+     }
+     
+-    var annualValue: Double {
++    var annualValue: Float {
+         switch backgroundHandling {
+         case .substract:
+-            annualBackgroundSubstractValue.doubleValue
++            annualBackgroundSubstractValue.floatValue
+         case .include:
+-            annualBackgroundIncludeValue.doubleValue
++            annualBackgroundIncludeValue.floatValue
+         }
+     }
+     
+@@ -171,7 +171,7 @@ enum DoseRange: String, OptionsPickerProtocol, Codable, Comparable {
+         }
+     }
+     
+-    var rangeReferenceInterval: Double {
++    var rangeReferenceInterval: Float {
+         switch self {
+         case .day: 365
+         case .week: 52
+@@ -181,7 +181,7 @@ enum DoseRange: String, OptionsPickerProtocol, Codable, Comparable {
+         }
+     }
+     
+-    var barReferenceInterval: Double {
++    var barReferenceInterval: Float {
+         switch self {
+         case .day: 365.0 * 24.0
+         case .week: 365.0
+diff --git a/RadiaCode/Presentation/Containers/Dose/Onboarding/Pages/DoseSelectBackgroundLevel/DoseSelectBackgroundLevelView.swift b/RadiaCode/Presentation/Containers/Dose/Onboarding/Pages/DoseSelectBackgroundLevel/DoseSelectBackgroundLevelView.swift
+index 11758f3..fd61e6d 100644
+--- a/RadiaCode/Presentation/Containers/Dose/Onboarding/Pages/DoseSelectBackgroundLevel/DoseSelectBackgroundLevelView.swift
++++ b/RadiaCode/Presentation/Containers/Dose/Onboarding/Pages/DoseSelectBackgroundLevel/DoseSelectBackgroundLevelView.swift
+@@ -56,7 +56,7 @@ struct DoseSelectBackgroundLevelView: View {
+                         )
+                         Map(initialPosition: startPosition) {
+                             Annotation("", coordinate: clCoordinates) {
+-                                DoseMapAnnotation(value: viewModel.doseValue)
++                                DoseMapAnnotation(value: viewModel.doseValue?.floatValue)
+                             }
+                             .annotationTitles(.hidden)
+                         }
+diff --git a/RadiaCode/Presentation/Containers/Dose/Onboarding/Views/DoseMapAnnotation.swift b/RadiaCode/Presentation/Containers/Dose/Onboarding/Views/DoseMapAnnotation.swift
+index 17eb0a8..0f3ae8c 100644
+--- a/RadiaCode/Presentation/Containers/Dose/Onboarding/Views/DoseMapAnnotation.swift
++++ b/RadiaCode/Presentation/Containers/Dose/Onboarding/Views/DoseMapAnnotation.swift
+@@ -8,7 +8,7 @@
+ import SwiftUI
+ 
+ struct DoseMapAnnotation: View {
+-    let value: Decimal?
++    let value: Float?
+         
+     var color: Color {
+         if value == nil {
+@@ -22,7 +22,7 @@ struct DoseMapAnnotation: View {
+         VStack(spacing: 10) {
+             HStack {
+                 if let value {
+-                    RadiationLevelValueLabelView(value: value, level: .doseRate)
++                    DoseRateLabelView(value: value)
+                 } else {
+                     Text(.Dose.noDataAvailable)
+                 }
+diff --git a/RadiaCode/Presentation/Containers/Dose/Services/DoseBarCalculator.swift b/RadiaCode/Presentation/Containers/Dose/Services/DoseBarCalculator.swift
+index 1ff8e8e..d8a771a 100644
+--- a/RadiaCode/Presentation/Containers/Dose/Services/DoseBarCalculator.swift
++++ b/RadiaCode/Presentation/Containers/Dose/Services/DoseBarCalculator.swift
+@@ -18,8 +18,8 @@ extension Container {
+ final class DoseBarCalculator {
+     
+     struct Result: Sendable {
+-        let displayedDose: Double
+-        let fullBarDose: Double
++        let displayedDose: Float
++        let fullBarDose: Float
+         let isExcluded: Bool
+         let isBackgroundOnly: Bool
+         let isPartiallyExcluded: Bool
+@@ -52,8 +52,8 @@ final class DoseBarCalculator {
+         
+         let counters = await MainActor.run { bar.counters() }
+ 
+-        var displayedDose = 0.0
+-        var fullBarDose = 0.0
++        var displayedDose: Float = 0.0
++        var fullBarDose: Float = 0.0
+         var hasNormal = false
+         var hasExcluded = false
+         var hasDisplayed = false
+@@ -125,8 +125,8 @@ private extension DoseBarCalculator {
+ private extension DoseBarCalculator {
+     
+     struct SegmentResult {
+-        let displayed: Double
+-        let full: Double
++        let displayed: Float
++        let full: Float
+         let hasNormalData: Bool
+         let hasExcludedData: Bool
+         
+@@ -230,7 +230,7 @@ private extension DoseBarCalculator {
+ 
+ private extension DoseBarCalculator {
+     
+-    func rawDose(for interval: DateInterval, counters: [DoseCounter]) -> Double? {
++    func rawDose(for interval: DateInterval, counters: [DoseCounter]) -> Float? {
+         guard !counters.isEmpty else { return nil }
+ 
+         guard let startValue = interpolate(at: interval.start, counters: counters),
+@@ -241,7 +241,7 @@ private extension DoseBarCalculator {
+         return max(0, endValue - startValue)
+     }
+     
+-    func interpolate(at date: Date, counters: [DoseCounter]) -> Double? {
++    func interpolate(at date: Date, counters: [DoseCounter]) -> Float? {
+         guard let first = counters.first, let last = counters.last else { return nil }
+ 
+         if date <= first.date {
+@@ -277,19 +277,19 @@ private extension DoseBarCalculator {
+             return normalize(left.value)
+         }
+ 
+-        let ratio = date.timeIntervalSince(left.date) / dt
++        let ratio = Float(date.timeIntervalSince(left.date) / dt)
+         let leftValue = normalize(left.value)
+         let rightValue = normalize(right.value)
+ 
+         return leftValue + (rightValue - leftValue) * ratio
+     }
+     
+-    func normalize(_ value: UInt32) -> Double { Double(value) / 100 }
++    func normalize(_ value: UInt32) -> Float { Float(value) / 100 }
+     
+     /// Фоновая доза для normal-сегментов с реальными данными.
+     /// Интегрирует по счётчикам внутри интервала методом правых прямоугольников.
+-    func backgroundDose(for interval: DateInterval, counters: [DoseCounter]) -> Double {
+-        var anchors: [(date: Date, background: Double)] = []
++    func backgroundDose(for interval: DateInterval, counters: [DoseCounter]) -> Float {
++        var anchors: [(date: Date, background: Float)] = []
+         
+         if let first = counters.last(where: { $0.date <= interval.start }) ?? counters.first {
+             anchors.append((interval.start, first.backgroundDose))
+@@ -304,23 +304,23 @@ private extension DoseBarCalculator {
+         }
+         
+         guard anchors.count >= 2 else {
+-            return (anchors.first?.background ?? 0) * (interval.duration / 3600)
++            return (anchors.first?.background ?? 0) * Float((interval.duration / 3600))
+         }
+         
+-        var total = 0.0
++        var total: Float = 0.0
+         for i in 1..<anchors.count {
+             let duration = anchors[i].date.timeIntervalSince(anchors[i - 1].date)
+-            total += anchors[i].background * (duration / 3600)
++            total += anchors[i].background * Float((duration / 3600))
+         }
+         return total
+     }
+     
+     /// Фоновая доза для gap и excluded сегментов.
+     /// Берёт максимум из ближайших счётчиков слева и справа от интервала.
+-    func nearbyMaxBackgroundDose(for interval: DateInterval, counters: [DoseCounter]) -> Double {
++    func nearbyMaxBackgroundDose(for interval: DateInterval, counters: [DoseCounter]) -> Float {
+         let left  = counters.last(where: { $0.date <= interval.start })?.backgroundDose ?? 0
+         let right = counters.first(where: { $0.date >= interval.end })?.backgroundDose ?? 0
+-        return max(left, right) * (interval.duration / 3600)
++        return max(left, right) * Float((interval.duration / 3600))
+     }
+ }
+ 
+diff --git a/RadiaCode/Presentation/Containers/Dose/Services/DoseSampleManager.swift b/RadiaCode/Presentation/Containers/Dose/Services/DoseSampleManager.swift
+index 527cc0b..197dfe0 100644
+--- a/RadiaCode/Presentation/Containers/Dose/Services/DoseSampleManager.swift
++++ b/RadiaCode/Presentation/Containers/Dose/Services/DoseSampleManager.swift
+@@ -75,7 +75,7 @@ final class DoseSampleManager {
+             .sink { [weak self] doseCounterBatch in
+                 guard let self, let doseCounterSaveUseCase else { return }
+                 Task {
+-                    let doseCounter = await doseCounterSaveUseCase.save(counterBatch: doseCounterBatch, backgroundDose: settings.backgroundLevel.value.doubleValue)
++                    let doseCounter = await doseCounterSaveUseCase.save(counterBatch: doseCounterBatch, backgroundDose: settings.backgroundLevel.value.floatValue)
+                     await self.doseCounterCache.appendLive(doseCounter)
+                     self.newDoseCounterSubject.send(doseCounter)
+                 }

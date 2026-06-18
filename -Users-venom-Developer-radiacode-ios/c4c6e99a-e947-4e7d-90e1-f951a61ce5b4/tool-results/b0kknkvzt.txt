@@ -1,0 +1,303 @@
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Extensions/Array+Data.swift-extension Array where Array.Element == UInt8 {
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Extensions/Array+Data.swift-
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Extensions/Array+Data.swift:    func toBinaryInteger<T: FixedWidthInteger>(start: Int) -> T {
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Extensions/Array+Data.swift-        var collectedBytes: [Element] = []
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Extensions/Array+Data.swift-
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Extensions/Array+Data.swift-        let length = T.bitWidth / 8
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Extensions/Array+Data.swift-
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Extensions/Array+Data.swift-        for index in start..<start + length where index < count {
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Extensions/Date+MSDos.swift-    init?(msdosDateTime: UInt32) {
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Extensions/Date+MSDos.swift-        let byteArray = msdosDateTime.asBytes
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Extensions/Date+MSDos.swift:        let dosTime: UInt16 = byteArray.toBinaryInteger(start: 0)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Extensions/Date+MSDos.swift:        let dosDate: UInt16 = byteArray.toBinaryInteger(start: 2)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Extensions/Date+MSDos.swift-        
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Extensions/Date+MSDos.swift-        let day = Int(dosDate.bitRange(endBit: 4))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Extensions/Date+MSDos.swift-        let month = Int(dosDate.bitRange(startBit: 5, endBit: 8))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Extensions/Date+MSDos.swift-        let year = Int(dosDate.bitRange(startBit: 9)) + 1980
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Extensions/Date+MSDos.swift-        
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-            
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-            // Каждая подпоследовательность начинается с 2-байтного заголовка
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift:            let header: UInt16 = bytes.toBinaryInteger(start: startIndex)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-            startIndex += 2
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-            
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-            // Cтаршие 12 бит содержат количество каналов в подпоследовательности
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-            let size = Int((header >> 4) & 0xFFF)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-            channelsSize -= size
+--
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-        for _ in 0..<size {
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-            guard startIndex < bytes.count else { throw SpectrumDecodeError.outOfBounds }
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift:            let value: UInt8 = bytes.toBinaryInteger(start: startIndex)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-            prevValue = Int(value)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-            result.append(UInt32(prevValue))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-            startIndex += 1
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-        }
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-    }
+--
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-        for _ in 0..<size {
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-            guard startIndex < bytes.count else { throw SpectrumDecodeError.outOfBounds }
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift:            let value: Int8 = bytes.toBinaryInteger(start: startIndex)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-            let next = prevValue &+ Int(value)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-            
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-            guard next >= 0 else { throw SpectrumDecodeError.negativeAccumulator(next) }
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-            
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-            prevValue = next
+--
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-            guard startIndex + 1 < bytes.count else { throw SpectrumDecodeError.outOfBounds }
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift:            let value: Int16 = bytes.toBinaryInteger(start: startIndex)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-            let next = prevValue &+ Int(value)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-            guard next >= 0 else { throw SpectrumDecodeError.negativeAccumulator(next) }
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-            
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-            prevValue = next
+--
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-    
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-            //  Читаем младшие 2 байта по указателю src, как числа без знака
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift:            let firstPart: UInt16 = bytes.toBinaryInteger(start: startIndex)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-            // Смещаем указатель на 3-й байт
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-            startIndex += 2
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-            // Читаем 3-й байт, как число со знаком
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift:            let secondPart: Int8 = bytes.toBinaryInteger(start: startIndex)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-            // преобразуем его в 4-байтное число со знаком (при этом старший бит прочитанного байта размножается во всех битах старших 3-х байтов)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-            // сдвигаем полученное значение на 16 бит влево и объединяем побитным логическим or с прочитанными ранее 2-мя байтами
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-            let diff = Int32(firstPart) | (Int32(secondPart) << 16)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-            let next = prevValue &+ Int(diff)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-
+--
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-            guard startIndex + 3 < bytes.count else { throw SpectrumDecodeError.outOfBounds }
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-            // значения каналов передаются "как есть"
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift:            let value: UInt32 = bytes.toBinaryInteger(start: startIndex)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-            prevValue = Int(value)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-            result.append(value)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-            startIndex += 4
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-        }
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Utils/Helpers/SpectrumPulseConverter.swift-    }
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/BluetoothCommand.Storage.swift-        let readedSize = lengthOffset + commandOffset + validOffset
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/BluetoothCommand.Storage.swift-        
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/BluetoothCommand.Storage.swift:        let estimatedLenght: UInt32 = bytes.toBinaryInteger(start: 0)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/BluetoothCommand.Storage.swift:        let command: UInt32 = bytes.toBinaryInteger(start: lengthOffset)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/BluetoothCommand.Storage.swift:        let valid: UInt32 = bytes.toBinaryInteger(start: lengthOffset + commandOffset)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/BluetoothCommand.Storage.swift-                
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/BluetoothCommand.Storage.swift-        var packLenthOffset = 0
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/BluetoothCommand.Storage.swift-
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/BluetoothCommand.Storage.swift-        /// Вычисляем длину пакета данных
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/BluetoothCommand.Storage.swift-        if command == BluetoothCommandType.readVirtualString.rawValue {
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/BluetoothCommand.Storage.swift:            let packLenth: UInt32 = bytes.toBinaryInteger(start: readedSize)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/BluetoothCommand.Storage.swift-            if packLenth == Int(estimatedLenght) - readedSize {
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/BluetoothCommand.Storage.swift-                 /// Длина пакета данных без заголовка
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/BluetoothCommand.Storage.swift-                 packLenthOffset = 4
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/BluetoothCommand.Storage.swift-            }
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/BluetoothCommand.Storage.swift-        }
+--
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/BluetoothCommand.Storage.swift-        
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/BluetoothCommand.Storage.swift-        /// Вычисление длины команды БЕЗ учета первого слова
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/BluetoothCommand.Storage.swift:        self.estimatedLength = bytes.toBinaryInteger(start: 0)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/BluetoothCommand.Storage.swift-
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/BluetoothCommand.Storage.swift:        self.command = bytes.toBinaryInteger(start: lengthOffset)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/BluetoothCommand.Storage.swift-        
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/BluetoothCommand.Storage.swift-        headerSize = commandOffset
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/BluetoothCommand.Storage.swift-        
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/BluetoothCommand.Storage.swift-        self.header = Array(bytes.prefix(lengthOffset + commandOffset))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/BluetoothCommand.Storage.swift-
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/FirmwareCommand.ReadFlashSiganture.swift-            var responseBytes = storage.body
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/FirmwareCommand.ReadFlashSiganture.swift-            
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/FirmwareCommand.ReadFlashSiganture.swift:            let signature: UInt32 = responseBytes.toBinaryInteger(start: 0)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/FirmwareCommand.ReadFlashSiganture.swift-            responseBytes = Array(responseBytes.dropFirst(MemoryLayout.size(ofValue: signature)))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/FirmwareCommand.ReadFlashSiganture.swift:            let fileNameLength: UInt8 = responseBytes.toBinaryInteger(start: 0)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/FirmwareCommand.ReadFlashSiganture.swift-            responseBytes = Array(responseBytes.dropFirst(MemoryLayout.size(ofValue: fileNameLength)))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/FirmwareCommand.ReadFlashSiganture.swift-            let fileName = String(data: Data(responseBytes[..<Int(fileNameLength)]), encoding: .windowsCP1251) ?? ""
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/FirmwareCommand.ReadFlashSiganture.swift-            responseBytes = Array(responseBytes.dropFirst(Int(fileNameLength)))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/FirmwareCommand.ReadFlashSiganture.swift:            let productNameLength: UInt8 = responseBytes.toBinaryInteger(start: 0)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/FirmwareCommand.ReadFlashSiganture.swift-            responseBytes = Array(responseBytes.dropFirst(MemoryLayout.size(ofValue: productNameLength)))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/FirmwareCommand.ReadFlashSiganture.swift-            let productName = String(data: Data(responseBytes[..<Int(productNameLength)]), encoding: .windowsCP1251) ?? ""
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/FirmwareCommand.ReadFlashSiganture.swift-            responseBytes = Array(responseBytes.dropFirst(Int(productNameLength)))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/FirmwareCommand.ReadFlashSiganture.swift:            let productStatusLength: UInt8 = responseBytes.toBinaryInteger(start: 0)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/FirmwareCommand.ReadFlashSiganture.swift-            responseBytes = Array(responseBytes.dropFirst(Int(productStatusLength)))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/FirmwareCommand.ReadFlashSiganture.swift-            let productStatus: [UInt8] = responseBytes
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/FirmwareCommand.ReadFlashSiganture.swift-            
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/FirmwareCommand.ReadFlashSiganture.swift-            return .init(
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/FirmwareCommand.ReadFlashSiganture.swift-                signature: signature,
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/FirmwareCommand.GetVersion.swift-    
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/FirmwareCommand.GetVersion.swift-    func parse(bytes: inout [UInt8], withSuffix: Bool) -> Response.VersionData {
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/FirmwareCommand.GetVersion.swift:        let versionLow: UInt16 = bytes.toBinaryInteger(start: 0)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/FirmwareCommand.GetVersion.swift:        let versionHigh: UInt16 = bytes.toBinaryInteger(start: 2)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/FirmwareCommand.GetVersion.swift:        let dateLength: UInt8 = bytes.toBinaryInteger(start: 4)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/FirmwareCommand.GetVersion.swift-        bytes = Array(bytes.dropFirst(5))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/FirmwareCommand.GetVersion.swift-        let date = String(data: Data(bytes[..<Int(dateLength)]), encoding: .windowsCP1251) ?? ""
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/FirmwareCommand.GetVersion.swift-        bytes = Array(bytes.dropFirst(Int(dateLength)))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/FirmwareCommand.GetVersion.swift-        let suffixVersion: String?
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/FirmwareCommand.GetVersion.swift-        
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/FirmwareCommand.GetVersion.swift-        if !bytes.isEmpty && withSuffix {
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/FirmwareCommand.GetVersion.swift:            let suffixLength: UInt8 = bytes.toBinaryInteger(start: 0)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/FirmwareCommand.GetVersion.swift-            bytes = Array(bytes.dropFirst(1))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/FirmwareCommand.GetVersion.swift-            suffixVersion = String(data: Data(bytes[..<Int(suffixLength)]), encoding: .windowsCP1251) ?? ""
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/FirmwareCommand.GetVersion.swift-            bytes = Array(bytes.dropFirst(Int(suffixLength)))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/FirmwareCommand.GetVersion.swift-        } else {
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/FirmwareCommand.GetVersion.swift-            suffixVersion = nil
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/Image/FirmwareCommand.Image.GetInfo.swift-            var signature: UInt32? = nil
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/Image/FirmwareCommand.Image.GetInfo.swift-            var crc: UInt32? = nil
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/Image/FirmwareCommand.Image.GetInfo.swift:            let loadedBytes: UInt32 = responseBytes.toBinaryInteger(start: 0)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/Image/FirmwareCommand.Image.GetInfo.swift-            responseBytes = Array(responseBytes.dropFirst(MemoryLayout.size(ofValue: loadedBytes)))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/Image/FirmwareCommand.Image.GetInfo.swift:            let diseredBlockSizeForFlashWrite: UInt32 = responseBytes.toBinaryInteger(start: 0)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/Image/FirmwareCommand.Image.GetInfo.swift-            responseBytes = Array(responseBytes.dropFirst(MemoryLayout.size(ofValue: diseredBlockSizeForFlashWrite)))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/Image/FirmwareCommand.Image.GetInfo.swift-            if loadedBytes != 0 { // Если загруженных байтов нет, то сигнатура и crc отсутствуют
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/Image/FirmwareCommand.Image.GetInfo.swift:                signature = responseBytes.toBinaryInteger(start: 0)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/Image/FirmwareCommand.Image.GetInfo.swift-                responseBytes = Array(responseBytes.dropFirst(MemoryLayout.size(ofValue: signature)))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/Image/FirmwareCommand.Image.GetInfo.swift:                crc = responseBytes.toBinaryInteger(start: 0)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/Image/FirmwareCommand.Image.GetInfo.swift-            }
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/Image/FirmwareCommand.Image.GetInfo.swift-            return .init(
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/Image/FirmwareCommand.Image.GetInfo.swift-                loadedBytes: loadedBytes,
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/Image/FirmwareCommand.Image.GetInfo.swift-                diseredBlockSize: diseredBlockSizeForFlashWrite,
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/Image/FirmwareCommand.Image.GetInfo.swift-                signature: signature,
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/Image/FirmwareCommand.Image.Write.swift-        .init { storage in
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/Image/FirmwareCommand.Image.Write.swift-            let responseBytes = storage.body
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/Image/FirmwareCommand.Image.Write.swift:            let writeBlockResult: UInt32 = responseBytes.toBinaryInteger(start: 0)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/Image/FirmwareCommand.Image.Write.swift-            return .init(
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/Image/FirmwareCommand.Image.Write.swift-                writeBlockResult: writeBlockResult
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/Image/FirmwareCommand.Image.Write.swift-            )
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/Image/FirmwareCommand.Image.Write.swift-        }
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/Image/FirmwareCommand.Image.Write.swift-    }
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/Image/FirmwareCommand.Image.Update.swift-        .init { storage in
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/Image/FirmwareCommand.Image.Update.swift-            var responseBytes = storage.body
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/Image/FirmwareCommand.Image.Update.swift:            let updateValidStatus: UInt32 = responseBytes.toBinaryInteger(start: 0)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/Image/FirmwareCommand.Image.Update.swift-            responseBytes = Array(responseBytes.dropFirst(MemoryLayout.size(ofValue: updateValidStatus)))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/Image/FirmwareCommand.Image.Update.swift:            let responseTimeout: UInt32 = responseBytes.toBinaryInteger(start: 0)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/Image/FirmwareCommand.Image.Update.swift-            return .init(
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/Image/FirmwareCommand.Image.Update.swift-                updateValidStatus: updateValidStatus,
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/Image/FirmwareCommand.Image.Update.swift-                responseTimeout: responseTimeout
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/Image/FirmwareCommand.Image.Update.swift-            )
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Firmware/Image/FirmwareCommand.Image.Update.swift-        }
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/System/SetExchangeCommand.swift-            
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/System/SetExchangeCommand.swift-            // TODO: Добавить проверку на Таргет
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/System/SetExchangeCommand.swift:            let targetId: UInt32 = bytes.toBinaryInteger(start: 0)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/System/SetExchangeCommand.swift-            bytes = Array(bytes.dropFirst(4))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/System/SetExchangeCommand.swift-            
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/System/SetExchangeCommand.swift:            let bufferTX: UInt16 = bytes.toBinaryInteger(start: 0)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/System/SetExchangeCommand.swift-            bytes = Array(bytes.dropFirst(2))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/System/SetExchangeCommand.swift-            
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/System/SetExchangeCommand.swift:            let bufferRX: UInt16 = bytes.toBinaryInteger(start: 0)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/System/SetExchangeCommand.swift-            bytes = Array(bytes.dropFirst(2))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/System/SetExchangeCommand.swift-            
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/System/SetExchangeCommand.swift-            // TODO: Добавить проверку на проверку готовности устройства
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/System/SetExchangeCommand.swift-            var isReady = true
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/System/SetExchangeCommand.swift-            var lockedByInterface: UInt8 = 0
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/System/SetExchangeCommand.swift-            if bytes.count > 0 {
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/System/SetExchangeCommand.swift:                let readyForExchange: UInt8 = bytes.toBinaryInteger(start: 0)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/System/SetExchangeCommand.swift:                lockedByInterface = bytes.toBinaryInteger(start: 1)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/System/SetExchangeCommand.swift-                isReady = readyForExchange != 0
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/System/SetExchangeCommand.swift-            }
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/System/SetExchangeCommand.swift-            
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/System/SetExchangeCommand.swift-            return .init(
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/System/SetExchangeCommand.swift-                targetId: targetId,
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/System/Settings/SettingsCommand.swift-    var response: BluetoothCommandResponseBuilder<Response> {
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/System/Settings/SettingsCommand.swift-        .init { storage in
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/System/Settings/SettingsCommand.swift:            return .init(register: request.command.rawValue, value: storage.body.toBinaryInteger(start: 0))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/System/Settings/SettingsCommand.swift-        }
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/System/Settings/SettingsCommand.swift-    }
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/System/Settings/SettingsCommand.swift-}
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/DataBuffer/DataBufferCommand.Response.swift-        
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/DataBuffer/DataBufferCommand.Response.swift-        /// Кол-во милисекунд от базового времени до данного отсчета.
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/DataBuffer/DataBufferCommand.Response.swift:        let timeValue: Int32 = bytes.toBinaryInteger(start: 3)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/DataBuffer/DataBufferCommand.Response.swift-        
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/DataBuffer/DataBufferCommand.Response.swift-        let headerSize = 7
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/DataBuffer/DataBufferCommand.Response.swift-        
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/DataBuffer/DataBufferCommand.Response.swift-        bytes = Array(bytes.dropFirst(headerSize))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/DataBuffer/DataBufferCommand.Response.swift-        
+--
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/DataBuffer/DataBufferCommand.Response.swift-        switch type {
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/DataBuffer/DataBufferCommand.Response.swift-        case .multi:
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/DataBuffer/DataBufferCommand.Response.swift:            let iterationsCount: UInt16 = bytes.toBinaryInteger(start: 0)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/DataBuffer/DataBufferCommand.Response.swift-            /// Кол-во милисекунд между соседними отсчетами (период выборки).
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/DataBuffer/DataBufferCommand.Response.swift:            sampleTime = bytes.toBinaryInteger(start: 2)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/DataBuffer/DataBufferCommand.Response.swift-            
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/DataBuffer/DataBufferCommand.Response.swift-            let iterationsSize = 6
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/DataBuffer/DataBufferCommand.Response.swift-            bytes = Array(bytes.dropFirst(iterationsSize))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/DataBuffer/DataBufferCommand.Response.swift-            
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/DataBuffer/DataBufferCommand.Response.swift-            iterations = Int(iterationsCount)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumCommand.swift-            
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumCommand.swift-            do {
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumCommand.swift:                let time: UInt32 = bytes.toBinaryInteger(start: 0)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumCommand.swift-                
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumCommand.swift-                guard time > 0 else {
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumCommand.swift-                    throw SpectrumValidationError.zeroTime
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumCommand.swift-                }
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumCommand.swift-
+--
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumCommand.swift-                
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumCommand.swift-                if specFormatVersion {
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumCommand.swift:                    countNeg = bytes.toBinaryInteger(start: 16)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumCommand.swift-                    pulses = try SpectrumPulseConverter.spectrumZip(bytes: Array(bytes.dropFirst(20)))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumCommand.swift-                } else {
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumCommand.swift-                    switch bytes.count {
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumCommand.swift-                    case Consts.dataSize:
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumCommand.swift-                        for index in 0..<Consts.dataSize {
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumCommand.swift:                            pulses[index] = bytes.toBinaryInteger(start: (Consts.defaultOffset + index) * 4)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumCommand.swift-                        }
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumCommand.swift-                    case Consts.dataSize256:
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumCommand.swift-                        throw SpectrumParseError.legacy256Format
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumCommand.swift-                        /// Парсинг данного спектра не актуален и не работает
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumCommand.swift-                        
+--
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumCommand.swift-                        //
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumCommand.swift-                        //                    for index in 0..<Consts.dataSize256 {
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumCommand.swift:                        //                        let source: UInt32 = bytes.toBinaryInteger(start: (Consts.defaultOffset + index) * 4)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumCommand.swift-                        //                        let convertedValues = convert(generator: &generator, source: source)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumCommand.swift-                        //                        let i4: Int = index * 4
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumCommand.swift-                        //                        pulses[i4] = convertedValues[0]
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumCommand.swift-                        //                        pulses[i4 + 1] = convertedValues[1]
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumCommand.swift-                        //                        pulses[i4 + 2] = convertedValues[2]
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumDiffCommand.swift-        .init { storage in
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumDiffCommand.swift-            let bytes = storage.body
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumDiffCommand.swift:            let time: UInt32 = bytes.toBinaryInteger(start: 0)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumDiffCommand.swift-            var countNeg: UInt32?
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumDiffCommand.swift-            var pulses: [UInt32] = []
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumDiffCommand.swift-            if specFormatVersion {
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumDiffCommand.swift:                countNeg = bytes.toBinaryInteger(start: 4)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumDiffCommand.swift-                pulses = try SpectrumPulseConverter.spectrumZip(bytes: Array(bytes.dropFirst(8)))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumDiffCommand.swift-            } else {
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumDiffCommand.swift-                if bytes.count == Consts.dataSize {
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumDiffCommand.swift-                    for index in 0..<Consts.dataSize {
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumDiffCommand.swift:                        pulses[index] = bytes.toBinaryInteger(start: (Consts.defaultOffset + index) * 4)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumDiffCommand.swift-                    }
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumDiffCommand.swift-                } else if bytes.count == Consts.dataSize256 {
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumDiffCommand.swift-                    /// Парсинг данного спектра не актуален и не работает
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumDiffCommand.swift-                }
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/BluetoothCommands/Spectrum/SpectrumDiffCommand.swift-            }
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift-        firmwareFileBytes = Array(firmwareFileBytes.dropFirst(marker.count))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift-        
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift:        let headerSize: UInt32 = firmwareFileBytes.toBinaryInteger(start: 0)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift-        firmwareFileBytes = Array(firmwareFileBytes.dropFirst(MemoryLayout.size(ofValue: headerSize)))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift-        
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift:        let dateTime: UInt32 = firmwareFileBytes.toBinaryInteger(start: 0)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift-        firmwareFileBytes = Array(firmwareFileBytes.dropFirst(MemoryLayout.size(ofValue: dateTime)))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift-        
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift:        let bufferSize: UInt32 = firmwareFileBytes.toBinaryInteger(start: 0)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift-        firmwareFileBytes = Array(firmwareFileBytes.dropFirst(MemoryLayout.size(ofValue: bufferSize)))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift-        
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift-        let serialNumber = Array(firmwareFileBytes[0...15])
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift-        firmwareFileBytes = Array(firmwareFileBytes.dropFirst(serialNumber.count))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift-        
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift:        let versionLow: UInt8 = firmwareFileBytes.toBinaryInteger(start: 0)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift-        firmwareFileBytes = Array(firmwareFileBytes.dropFirst(MemoryLayout.size(ofValue: versionLow)))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift-        
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift:        let versionHigh: UInt8 = firmwareFileBytes.toBinaryInteger(start: 0)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift-        firmwareFileBytes = Array(firmwareFileBytes.dropFirst(MemoryLayout.size(ofValue: versionHigh)))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift-        
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift:        let fileCount: UInt32 = firmwareFileBytes.toBinaryInteger(start: 0)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift-        firmwareFileBytes = Array(firmwareFileBytes.dropFirst(MemoryLayout.size(ofValue: fileCount)))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift-        
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift:        let firmwareHeaderSize: UInt32 = firmwareFileBytes.toBinaryInteger(start: 0)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift-        firmwareFileBytes = Array(firmwareFileBytes.dropFirst(MemoryLayout.size(ofValue: firmwareHeaderSize)))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift-        
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift:        let compressed: UInt8 = firmwareFileBytes.toBinaryInteger(start: 0)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift-        firmwareFileBytes = Array(firmwareFileBytes.dropFirst(MemoryLayout.size(ofValue: compressed)))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift-        
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift:        let reserved: UInt8 = firmwareFileBytes.toBinaryInteger(start: 0)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift-        firmwareFileBytes = Array(firmwareFileBytes.dropFirst(MemoryLayout.size(ofValue: reserved)))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift-        
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift:        let crc: UInt32 = firmwareFileBytes.toBinaryInteger(start: 0)
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift-        firmwareFileBytes = Array(firmwareFileBytes.dropFirst(MemoryLayout.size(ofValue: crc)))
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift-        
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift-        return Firmware.Header(
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift-            marker: marker,
+/Users/mkozin/Developer/radiacode-ios/RadiaCode/Services/Firmware/FirmwareFactory.swift-            headerSize: headerSize,
